@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islahul Uloom | Islamic Higher Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Styles - Heritage Theme */
+        :root {
+            --primary-color-brown: #5D4037; /* Dark Brown */
+            --primary-color-blue: #001f3f;  /* Navy Blue */
+            --accent-color-gold: #B08D57;   /* Soft Gold/Bronze (can be adjusted) */
+            --accent-color-cream: #F5F5DC; /* Beige/Cream */
+            --text-light: #F8F9FA;         /* Very Light Gray/Off-White for dark backgrounds */
+            --text-dark: #212529;          /* Dark Gray for text on light backgrounds */
+            --bg-light: #FAF3E0;           /* Light Cream/Tan background */
+            --bg-medium: #E0D6C3;          /* Medium Tan/Beige */
+            --bg-dark: var(--primary-color-blue); /* Dark Blue for dark sections */
+            --bg-dark-secondary: var(--primary-color-brown); /* Dark Brown for other dark sections */
+            
+            --chatbot-bg: #ffffff;
+            --chatbot-header-bg: var(--primary-color-brown); /* Chatbot header with brown */
+            --chatbot-text-dark: #333;
+            --chatbot-text-light: var(--text-light);
+            --user-msg-bg: #E8EAF6; /* Lighter Indigo for user messages */
+            --bot-msg-bg: #F1F8E9;   /* Lighter Green/Cream for bot messages */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden; 
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-color-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+            z-index: 9999;
+            mix-blend-mode: difference; 
+        }
+        .custom-cursor.hovered {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(176, 141, 87, 0.2); /* Gold with opacity */
+            border-color: #8c6d40; /* Darker Gold */
+        }
+        .custom-cursor.clicked {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(176, 141, 87, 0.4);
+            border-color: #8c6d40;
+        }
+
+        /* Hero Section Image Slider */
+        #hero-slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: brightness(0.6); /* Darken images slightly for text readability */
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        /* Scroll Animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        #main-header-logo {
+            font-family: 'Bricolage Grotesque', serif; /* Heritage Font */
+            font-size: 2.25rem; /* Adjust as needed */
+            font-weight: 700;
+            color: var(--primary-color-brown);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        #main-header-logo:hover {
+            transform: scale(1.05);
+            color: var(--accent-color-gold);
+        }
+        .header-sticky #main-header-logo {
+            color: var(--text-light); /* Logo color on sticky header */
+        }
+         .header-sticky #main-header-logo:hover {
+            color: var(--accent-color-gold);
+        }
+
+
+        .header-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(93, 64, 55, 0.9); /* Dark Brown with opacity */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .header-sticky nav a { color: var(--text-light); }
+        .header-sticky nav a:hover { color: var(--accent-color-gold); }
+        .header-sticky nav a::after { background: var(--accent-color-gold); }
+        
+        /* Section padding */
+        .section-padding { padding-top: 7rem; padding-bottom: 7rem; }
+        @media (max-width: 768px) { .section-padding { padding-top: 5rem; padding-bottom: 5rem; } }
+
+        /* Card hover effect */
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+
+        /* Button styles */
+        .btn {
+            padding: 0.85rem 1.8rem; 
+            border-radius: 0.375rem; 
+            font-weight: 600; 
+            transition: all 0.3s ease;
+            display: inline-block; text-align: center; letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background-color: var(--accent-color-gold);
+            color: var(--primary-color-brown); /* Dark text on gold button */
+            box-shadow: 0 4px 15px rgba(176, 141, 87, 0.3);
+        }
+        .btn-primary:hover {
+            background-color: #8c6d40; /* Darker Gold */
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(176, 141, 87, 0.4);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color-gold);
+            border: 2px solid var(--accent-color-gold);
+        }
+        .btn-secondary:hover {
+            background-color: var(--accent-color-gold);
+            color: var(--primary-color-brown);
+            transform: translateY(-3px);
+        }
+        /* Hero button secondary adjustments */
+        #hero .btn-secondary {
+            color: var(--text-light);
+            border-color: var(--text-light);
+        }
+        #hero .btn-secondary:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color-blue); /* Or brown, depending on hero bg */
+        }
+
+
+        /* Navigation link hover effect */
+        header nav a { 
+            position: relative; text-decoration: none;
+            color: var(--text-dark); 
+            font-weight: 500;
+        }
+        header nav a.btn-primary { color: var(--primary-color-brown) !important; }
+        header nav a.btn-primary:hover { color: white !important; }
+        header nav a.btn-primary::after { content: none; }
+
+        header nav a:not(.btn-primary)::after { 
+            content: ''; position: absolute; width: 0; height: 2px;
+            display: block; margin-top: 5px; right: 0;
+            background: var(--accent-color-gold);
+            transition: width 0.3s ease;
+        }
+        header nav a:not(.btn-primary):hover::after { width: 100%; left: 0; }
+        header nav a:not(.btn-primary):hover { color: var(--accent-color-gold); }
+
+        /* Mobile Menu Icon */
+        .menu-icon span {
+            display: block; width: 25px; height: 2px; 
+            background-color: var(--text-dark); 
+            margin: 6px 0; transition: all 0.3s ease-in-out;
+        }
+        .header-sticky .menu-icon span { background-color: var(--text-light); }
+        .menu-icon.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-icon.open span:nth-child(2) { opacity: 0; }
+        .menu-icon.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        /* Section Title Styling */
+        .section-title {
+            font-size: 2.75rem; font-weight: 700; 
+            color: var(--primary-color-brown); /* Brown for titles */
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.25rem; color: #757575; /* Muted gray for subtitles */
+            max-width: 3xl; margin-left: auto; margin-right: auto; margin-bottom: 4rem; 
+        }
+        .dark-section .section-title { color: var(--text-light); }
+        .dark-section .section-subtitle { color: var(--text-light); opacity: 0.85; }
+
+        /* Donation Section Specific Styles */
+        .donation-qr-code {
+            border: 4px solid var(--accent-color-gold);
+            padding: 8px; border-radius: 0.5rem; background-color: white;
+        }
+
+        /* Testimonial Section */
+        .testimonial-card {
+            background-color: white;
+            border-left: 5px solid var(--accent-color-gold);
+        }
+        .testimonial-card img {
+            width: 80px; height: 80px;
+            border: 3px solid var(--accent-color-cream);
+        }
+        .testimonial-quote {
+            font-style: italic;
+            color: #555;
+        }
+        .testimonial-author {
+            color: var(--primary-color-brown);
+        }
+
+        /* AI Chatbot Styles (mostly unchanged, colors adapt via vars) */
+        #chatbot-toggle {
+            position: fixed; bottom: 25px; right: 25px;
+            background-color: var(--accent-color-gold); color: var(--primary-color-brown);
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer; z-index: 1001; transition: transform 0.2s ease-in-out;
+        }
+        #chatbot-toggle:hover { transform: scale(1.1); background-color: #8c6d40; }
+
+        #chatbot-window {
+            position: fixed; bottom: 100px; right: 25px;
+            width: 350px; max-width: 90vw; height: 500px; max-height: 70vh;
+            background-color: var(--chatbot-bg); border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; overflow: hidden;
+            z-index: 1000; opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+        #chatbot-window.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+        .chatbot-header {
+            background-color: var(--chatbot-header-bg); color: var(--chatbot-text-light);
+            padding: 15px; display: flex; justify-content: space-between; align-items: center;
+            border-top-left-radius: 10px; border-top-right-radius: 10px;
+        }
+        .chatbot-header h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+        #chatbot-close {
+            background: none; border: none; color: var(--chatbot-text-light);
+            font-size: 20px; cursor: pointer;
+        }
+
+        #chatbot-messages-container {
+            flex-grow: 1; padding: 15px; overflow-y: auto;
+            display: flex; flex-direction: column;
+        }
+        .chat-message {
+            padding: 10px 15px; border-radius: 15px; margin-bottom: 10px;
+            max-width: 80%; line-height: 1.4; font-size: 0.9rem;
+        }
+        .user-message {
+            background-color: var(--user-msg-bg); color: var(--chatbot-text-dark);
+            align-self: flex-end; border-bottom-right-radius: 5px;
+        }
+        .bot-message {
+            background-color: var(--bot-msg-bg); color: var(--chatbot-text-dark);
+            align-self: flex-start; border-bottom-left-radius: 5px;
+        }
+        .bot-message.typing-indicator span {
+            display: inline-block; width: 8px; height: 8px; margin: 0 2px;
+            background-color: var(--accent-color-gold); border-radius: 50%;
+            animation: typing 1s infinite ease-in-out;
+        }
+        .bot-message.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .bot-message.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing { 0%, 100% { opacity: 0.3; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1); } }
+
+        #chatbot-prompts {
+            padding: 10px 15px; border-top: 1px solid #e0e0e0;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .prompt-button {
+            background-color: #F5F5F5; /* Lighter grey for prompts */
+            color: var(--primary-color-brown); border: 1px solid #DCDCDC;
+            padding: 10px; border-radius: 8px; cursor: pointer;
+            text-align: left; font-size: 0.85rem; transition: background-color 0.2s ease;
+        }
+        .prompt-button:hover { background-color: #EEEEEE; }
+
+        /* Footer social icons */
+        footer .fab {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        footer .fab:hover {
+            color: var(--accent-color-gold) !important; /* Ensure gold hover for social icons */
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="custom-cursor"></div>
+
+    <header id="main-header" class="py-5 transition-all duration-300 ease-in-out bg-white shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" id="main-header-logo">
+                <i class="fas fa-mosque mr-2 opacity-75"></i>Islahul Uloom
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#hero">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#programs">Programs</a>
+                <a href="#facilities">Facilities</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#donations">Donate</a>
+                <a href="#news">News & Events</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="btn btn-primary">Apply Now</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="focus:outline-none menu-icon">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl py-2 absolute w-full left-0 top-full">
+            <a href="#hero" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">Home</a>
+            <a href="#about" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">About Us</a>
+            <a href="#programs" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">Programs</a>
+            <a href="#facilities" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">Facilities</a>
+            <a href="#testimonials" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">Testimonials</a>
+            <a href="#donations" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">Donate</a>
+            <a href="#news" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">News & Events</a>
+            <a href="#contact" class="block px-6 py-3 text-gray-700 hover:bg-cream-100 hover:text-brown-700">Contact</a>
+            <a href="#" class="block px-6 py-3 btn btn-primary mx-4 my-2 text-center">Apply Now</a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative text-white min-h-screen flex items-center justify-center overflow-hidden" style="background-color: var(--primary-color-blue);">
+        <div id="hero-slider-container">
+            </div>
+        <div class="relative z-10 text-center p-6 space-y-8 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight animate-fade-in-down" style="font-family: 'Merriweather', serif;">
+                Legacy of Learning, Beacon of Faith
+            </h1>
+            <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.5s;">
+                Islahul Uloom: Nurturing generations with profound Islamic knowledge and unwavering values since 1924.
+            </p>
+            <div class="animate-fade-in-up" style="animation-delay: 1s;">
+                <a href="#programs" class="btn btn-primary text-lg mr-4">Our Programs</a>
+                <a href="#about" class="btn btn-secondary text-lg">Discover Islahul Uloom</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#about" aria-label="Scroll down">
+                <svg class="w-10 h-10 text-white opacity-70 animate-bounce hover:opacity-100 transition-opacity" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Welcome to Islahul Uloom</h2>
+                <p class="section-subtitle">
+                    A historic institution committed to excellence in Islamic higher education, blending rich heritage with contemporary academic pursuits. <br> Affiliated to Darul Huda Islamic University, Chemmad.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animate rounded-xl overflow-hidden shadow-2xl">
+                    <img src="https://scontent.fcok6-2.fna.fbcdn.net/v/t39.30808-6/491120252_1166133772192027_8300800480606444846_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pcuv6pCThfkQ7kNvwG2QQFe&_nc_oc=AdmPys7RGJQ4JmcO_t6Ea9_os5m4WsB0ay4z64n_FMEV9MLtOulnVPcc1fjMpycyXXc&_nc_zt=23&_nc_ht=scontent.fcok6-2.fna&_nc_gid=X87B5bVR96YHUor-6U6G0A&oh=00_AfIGo4L-jLW0wAIvdbdyyOY5Cmgxkn8QvkFjbaJxi28xGA&oe=6823A70C" alt="Islahul Uloom Campus" class="w-full h-auto object-cover" >
+                </div>
+                <div class="space-y-6 scroll-animate" style="transition-delay: 0.2s;">
+                    <h3 class="text-3xl font-semibold" style="color: var(--primary-color-brown);">Our Enduring Mission & Vision</h3>
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        To be a distinguished center of Islamic learning that empowers individuals with authentic knowledge, fosters critical thinking, and instills strong moral values to serve the Ummah and humanity at large. We envision graduates who are not only scholars but also community leaders and global citizens.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start text-lg"><i class="fas fa-book-reader text-xl mr-3" style="color: var(--accent-color-gold);"></i> Deep-rooted traditional Islamic scholarship.</li>
+                        <li class="flex items-start text-lg"><i class="fas fa-chalkboard-teacher text-xl mr-3" style="color: var(--accent-color-gold);"></i> Experienced faculty dedicated to student mentorship.</li>
+                        <li class="flex items-start text-lg"><i class="fas fa-hands-helping text-xl mr-3" style="color: var(--accent-color-gold);"></i> Commitment to community service and ethical leadership.</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-4">Our Rich History</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="section-padding" style="background-color: var(--bg-medium);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Academic Offerings</h2>
+                <p class="section-subtitle">
+                    Explore our comprehensive degree programs designed to provide a profound understanding of Islamic sciences and their application in the modern world.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-xl card-hover scroll-animate">
+                    <div class="text-5xl mb-6" style="color: var(--accent-color-gold);"><i class="fas fa-kaaba"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Sharia & Islamic Law (Fiqh)</h3>
+                    <p class="text-gray-600 mb-6">Advanced studies in Islamic jurisprudence, legal theory, and contemporary applications.</p>
+                    <a href="#" class="font-semibold group" style="color: var(--primary-color-brown);">Learn More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-xl card-hover scroll-animate" style="transition-delay: 0.2s;">
+                    <div class="text-5xl mb-6" style="color: var(--accent-color-gold);"><i class="fas fa-quran"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Quranic Studies & Tafsir</h3>
+                    <p class="text-gray-600 mb-6">In-depth exegesis of the Holy Quran, Hadith studies, and classical Arabic literature.</p>
+                    <a href="#" class="font-semibold group" style="color: var(--primary-color-brown);">Learn More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-xl card-hover scroll-animate" style="transition-delay: 0.4s;">
+                    <div class="text-5xl mb-6" style="color: var(--accent-color-gold);"><i class="fas fa-mosque"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Islamic History & Civilization</h3>
+                    <p class="text-gray-600 mb-6">Exploring the rich tapestry of Islamic heritage, culture, and its global impact.</p>
+                    <a href="#" class="font-semibold group" style="color: var(--primary-color-brown);">Learn More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+            </div>
+            <div class="text-center mt-16 scroll-animate">
+                <a href="#" class="btn btn-primary text-lg">View All Programs</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="facilities" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Our Campus & Facilities</h2>
+                <p class="section-subtitle">
+                    A conducive environment for learning and spiritual growth, equipped with modern amenities while preserving our esteemed heritage.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 scroll-animate">
+                    <img src="https://placehold.co/400x300/5D4037/FAF3E0?text=Khutub+Khana+(Library)" alt="University Library" class="rounded-lg shadow-lg mb-6 w-full h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/5D4037/FAF3E0?text=Image+Not+Found';">
+                    <h3 class="text-2xl font-semibold mb-2" style="color: var(--primary-color-brown);">The Khutub Khana (Library)</h3>
+                    <p class="text-gray-600">A vast repository of classical texts, manuscripts, and contemporary Islamic scholarship.</p>
+                </div>
+                <div class="text-center p-6 scroll-animate" style="transition-delay: 0.2s;">
+                    <img src="https://placehold.co/400x300/A1887F/FFFFFF?text=Spacious+Prayer+Hall" alt="Prayer Hall" class="rounded-lg shadow-lg mb-6 w-full h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/A1887F/FFFFFF?text=Image+Not+Found';">
+                    <h3 class="text-2xl font-semibold mb-2" style="color: var(--primary-color-brown);">Serene Prayer Halls</h3>
+                    <p class="text-gray-600">Spacious and tranquil prayer areas for students and faculty, fostering spiritual reflection.</p>
+                </div>
+                <div class="text-center p-6 scroll-animate" style="transition-delay: 0.4s;">
+                    <img src="https://placehold.co/400x300/001f3f/FAF3E0?text=Smart+Lecture+Rooms" alt="Smart Classroom" class="rounded-lg shadow-lg mb-6 w-full h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/001f3f/FAF3E0?text=Image+Not+Found';">
+                    <h3 class="text-2xl font-semibold mb-2" style="color: var(--primary-color-brown);">Modern Lecture Rooms</h3>
+                    <p class="text-gray-600">Equipped with smart technology to enhance interactive learning experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section-padding" style="background-color: var(--bg-medium);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Voices of Our Community</h2>
+                <p class="section-subtitle">
+                    Hear from our students, alumni, and faculty about their experiences at Islahul Uloom.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate">
+                    <img src="https://placehold.co/80x80/5D4037/FFFFFF?text=AA" alt="Alumni Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"Islahul Uloom provided me with a profound understanding of Islamic sciences and shaped my character. The guidance from the scholars here is invaluable."</p>
+                    <p class="testimonial-author font-semibold text-center">Ahmed Al-Farsi</p>
+                    <p class="text-sm text-gray-500 text-center">Alumnus, Class of 2018</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate" style="transition-delay: 0.1s;">
+                    <img src="https://placehold.co/80x80/B08D57/FFFFFF?text=FS" alt="Faculty Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"Teaching at Islahul Uloom is a privilege. The commitment to authentic knowledge and the students' zeal for learning is truly inspiring."</p>
+                    <p class="testimonial-author font-semibold text-center">Dr. Fatima Siddiqui</p>
+                    <p class="text-sm text-gray-500 text-center">Professor, Dept. of Tafsir</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate" style="transition-delay: 0.2s;">
+                    <img src="https://placehold.co/80x80/001f3f/FFFFFF?text=US" alt="Student Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"The supportive community and the depth of knowledge I'm gaining here are beyond my expectations. It's a transformative journey."</p>
+                    <p class="testimonial-author font-semibold text-center">Usman Shareef</p>
+                    <p class="text-sm text-gray-500 text-center">Current Student, Sharia Program</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate" style="transition-delay: 0.3s;">
+                    <img src="https://placehold.co/80x80/5D4037/FFFFFF?text=ZA" alt="Alumni Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"The heritage and values instilled at Islahul Uloom have been a guiding light in my personal and professional life."</p>
+                    <p class="testimonial-author font-semibold text-center">Zainab Al-Attas</p>
+                    <p class="text-sm text-gray-500 text-center">Alumna, Class of 2015</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate" style="transition-delay: 0.4s;">
+                    <img src="https://placehold.co/80x80/B08D57/FFFFFF?text=IK" alt="Parent Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"As a parent, I am deeply satisfied with the holistic education my son is receiving, combining deen and duniya."</p>
+                    <p class="testimonial-author font-semibold text-center">Ibrahim Khan</p>
+                    <p class="text-sm text-gray-500 text-center">Parent of a Student</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate" style="transition-delay: 0.5s;">
+                    <img src="https://placehold.co/80x80/001f3f/FFFFFF?text=NH" alt="Community Leader" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"Islahul Uloom stands as a pillar in our community, consistently producing individuals of knowledge and integrity."</p>
+                    <p class="testimonial-author font-semibold text-center">Noorul Huda</p>
+                    <p class="text-sm text-gray-500 text-center">Community Leader</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="donations" class="section-padding" style="background-color: var(--bg-dark-secondary);">
+        <div class="container mx-auto px-6 dark-section">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Support Our Legacy (Sadaqah Jariyah)</h2>
+                <p class="section-subtitle">
+                    Your contributions fuel our mission to provide outstanding Islamic education and uphold our cherished heritage.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animate space-y-6 text-gray-300">
+                    <h3 class="text-3xl font-semibold text-white">Invest in Knowledge, Secure the Future</h3>
+                    <p class="leading-relaxed">
+                        Your support enables us to:
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><i class="fas fa-user-graduate text-xl mr-3" style="color: var(--accent-color-gold);"></i> Provide scholarships to deserving students.</li>
+                        <li class="flex items-start"><i class="fas fa-book-open-reader text-xl mr-3" style="color: var(--accent-color-gold);"></i> Enrich our Khutub Khana and research endeavors.</li>
+                        <li class="flex items-start"><i class="fas fa-lightbulb text-xl mr-3" style="color: var(--accent-color-gold);"></i> Innovate academic programs and community services.</li>
+                    </ul>
+                    <p class="leading-relaxed mt-4 text-sm">
+                        The Prophet (ﷺ) said: "When a person dies, his deeds come to an end except for three: Sadaqah Jariyah (a continuing charity), or knowledge from which benefit is obtained, or a pious child who prays for him." (Muslim)
+                    </p>
+                </div>
+                <div class="scroll-animate bg-gray-800 p-8 md:p-10 rounded-xl shadow-2xl text-center" style="background-color: var(--primary-color-blue); transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Donate via UPI</h3>
+                    <img src="https://placehold.co/250x250/FFFFFF/5D4037?text=SCAN+UPI+QR" alt="UPI QR Code" class="mx-auto mb-6 donation-qr-code w-48 h-48 md:w-60 md:h-60" onerror="this.onerror=null;this.src='https://placehold.co/250x250/FFFFFF/5D4037?text=QR+Code';">
+                    <p class="text-lg text-gray-300 mb-2">Our UPI ID:</p>
+                    <p class="text-2xl font-bold text-white mb-6 select-all" style="color: var(--accent-color-gold);">islahululoom@upi</p>
+                    <a href="#" class="btn btn-primary w-full text-lg">Donate Securely Online</a>
+                    <p class="text-xs text-gray-400 mt-4">For bank transfers or other methods, please <a href="#contact" class="underline hover:text-accent-color-gold">contact us</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Latest News & Happenings</h2>
+                <p class="section-subtitle">
+                    Stay updated with the vibrant academic and community life at Islahul Uloom.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover scroll-animate">
+                    <img src="https://placehold.co/600x400/5D4037/FFFFFF?text=Heritage+Lecture+Series" alt="Heritage Lecture" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/5D4037/FFFFFF?text=Image+Not+Found';">
+                    <div class="p-6">
+                        <p class="text-sm font-semibold mb-2" style="color: var(--accent-color-gold);">OCT 15, 2025 | LECTURE SERIES</p>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Renowned Scholar Inaugurates Heritage Lecture Series</h3>
+                        <p class="text-gray-600 text-sm mb-4">Exploring the intellectual legacy of early Islamic thinkers...</p>
+                        <a href="#" class="font-medium group" style="color: var(--primary-color-brown);">Read More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover scroll-animate" style="transition-delay: 0.2s;">
+                    <img src="https://placehold.co/600x400/B08D57/000000?text=Community+Iftar+Gathering" alt="Community Iftar" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/B08D57/000000?text=Image+Not+Found';">
+                    <div class="p-6">
+                        <p class="text-sm font-semibold mb-2" style="color: var(--accent-color-gold);">RAMADAN 1447 AH | COMMUNITY EVENT</p>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Annual Community Iftar Fosters Unity</h3>
+                        <p class="text-gray-600 text-sm mb-4">Students, faculty, and local residents share blessings of the holy month...</p>
+                        <a href="#" class="font-medium group" style="color: var(--primary-color-brown);">Event Highlights <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover scroll-animate" style="transition-delay: 0.4s;">
+                    <img src="https://placehold.co/600x400/001f3f/FFFFFF?text=Student+Research+Symposium" alt="Research Symposium" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/001f3f/FFFFFF?text=Image+Not+Found';">
+                    <div class="p-6">
+                        <p class="text-sm font-semibold mb-2" style="color: var(--accent-color-gold);">NOV 05, 2025 | ACADEMIC</p>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Students Showcase Research at Annual Symposium</h3>
+                        <p class="text-gray-600 text-sm mb-4">Presenting insightful papers on contemporary Islamic issues...</p>
+                        <a href="#" class="font-medium group" style="color: var(--primary-color-brown);">View Abstracts <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 text-white dark-section" style="background: linear-gradient(rgba(0,31,63,0.7), rgba(0,31,63,0.7)), url('https://placehold.co/1920x600/5D4037/FAF3E0?text=Calligraphy+Art') center center/cover fixed;">
+        <div class="container mx-auto px-6 text-center scroll-animate">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="font-family: 'Merriweather', serif;">Embark on Your Journey of Enlightenment</h2>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
+                Join Islahul Uloom and become part of a timeless tradition of Islamic scholarship and ethical leadership.
+            </p>
+            <a href="#" class="btn btn-primary bg-white text-lg px-10 py-4" style="color: var(--primary-color-blue); box-shadow: 0 5px 20px rgba(255,255,255,0.2);">Apply Now</a>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">
+                    We are here to assist you. For admissions, inquiries, or visits, please don't hesitate to contact us.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="bg-white p-8 rounded-xl shadow-2xl scroll-animate">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send Us a Message</h3>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border-gray-300 text-gray-800 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border-gray-300 text-gray-800 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <input type="text" name="subject" id="subject" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border-gray-300 text-gray-800 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea name="message" id="message" rows="4" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border-gray-300 text-gray-800 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full btn btn-primary py-3">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="space-y-8 scroll-animate" style="transition-delay: 0.2s;">
+                    <div class="bg-white p-8 rounded-xl shadow-2xl">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                        <p class="text-gray-700 mb-2"><i class="fas fa-map-marker-alt mr-3" style="color: var(--accent-color-gold);"></i>Islahul Uloom Arabic College, Tanur, Kerala, India</p>
+                        <p class="text-gray-700 mb-2"><i class="fas fa-phone-alt mr-3" style="color: var(--accent-color-gold);"></i>(123) 555-0123 (Replace with actual number)</p>
+                        <p class="text-gray-700 mb-4"><i class="fas fa-envelope mr-3" style="color: var(--accent-color-gold);"></i>info@islahululoom.edu (Replace with actual email)</p>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">Office Hours</h4>
+                        <p class="text-gray-700">Monday - Saturday: 9:00 AM - 5:00 PM</p>
+                        <p class="text-gray-700">(Friday: 9:00 AM - 12:30 PM)</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-2xl">
+                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Follow Our Journey</h3>
+                         <div class="flex space-x-6">
+                            <a href="https://www.instagram.com/islahul_uloom_tanur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-pink-600 text-3xl"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-blue-600 text-3xl"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-red-600 text-3xl"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-blue-400 text-3xl"><i class="fab fa-twitter"></i></a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background-color: var(--bg-dark);" class="text-gray-400 py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center" style="font-family: 'Cinzel Decorative', serif;"><i class="fas fa-mosque mr-2" style="color: var(--accent-color-gold);"></i>Islahul Uloom</h3>
+                    <p class="text-sm">A historic institution for Islamic higher education and research. Affiliated to Darul Huda Islamic University, Chemmad.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-accent-color-gold transition-colors">About Us</a></li>
+                        <li><a href="#programs" class="hover:text-accent-color-gold transition-colors">Programs</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Admissions</a></li>
+                        <li><a href="#facilities" class="hover:text-accent-color-gold transition-colors">Facilities</a></li>
+                        <li><a href="#donations" class="hover:text-accent-color-gold transition-colors">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Khutub Khana (Library)</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Student Portal</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Faculty Directory</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Alumni Network</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Stay Connected</h3>
+                    <p class="text-sm mb-3">Subscribe for updates on events, research, and university news.</p>
+                    <form action="#" class="flex">
+                        <input type="email" placeholder="Your Email" class="w-full px-3 py-2.5 rounded-l-md text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-color-gold border-transparent">
+                        <button type="submit" class="text-white px-4 py-2.5 rounded-r-md text-sm font-semibold transition-colors" style="background-color: var(--accent-color-gold); color: var(--primary-color-brown);">Subscribe</button>
+                    </form>
+                     <div class="mt-4 flex space-x-4">
+                        <a href="https://www.instagram.com/islahul_uloom_tanur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-pink-500 text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-xl"><i class="fab fa-twitter"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-10 text-center text-sm">
+                <p>&copy; <span id="current-year"></span> Islahul Uloom Arabic College. All Rights Reserved.
+                <br class="md:hidden">
+                <a href="#" class="hover:text-accent-color-gold transition-colors ml-0 md:ml-4">Privacy Policy</a> | <a href="#" class="hover:text-accent-color-gold transition-colors ml-2">Terms of Use</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="chatbot-toggle">
+        <i class="fas fa-hands-helping"></i> </div>
+    <div id="chatbot-window" class="">
+        <div class="chatbot-header">
+            <h3>Islahul Uloom Assistant</h3>
+            <button id="chatbot-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-messages-container">
+            <div class="chat-message bot-message">Assalamu Alaikum! Welcome to Islahul Uloom. How can I assist you today?</div>
+        </div>
+        <div id="chatbot-prompts">
+            <button class="prompt-button" data-prompt="dua_majlis_time">When is the Special Dua Majlis conducted?</button>
+            <button class="prompt-button" data-prompt="dua_majlis_women_area">Is there a separate area for women at the Dua Majlis?</button>
+            <button class="prompt-button" data-prompt="dua_majlis_parking">Is parking available for the Dua Majlis?</button>
+            <button class="prompt-button" data-prompt="khutub_khana_visit">Can I visit the Khutub Khana (Library)?</button>
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- Custom Cursor ---
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) { 
+            document.addEventListener('mousemove', e => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('a, button, input, textarea, .card-hover, .prompt-button, #chatbot-toggle').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+            });
+            document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
+            document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
+        }
+
+        // --- Hero Image Slider ---
+        const sliderContainer = document.getElementById('hero-slider-container');
+        const images = [ // Add your 5 landscape image URLs here
+            'https://placehold.co/1920x1080/5D4037/FAF3E0?text=Islahul+Uloom+Campus+View+1',
+            'https://placehold.co/1920x1080/001f3f/FAF3E0?text=Serene+Courtyard+2',
+            'https://placehold.co/1920x1080/B08D57/212529?text=Library+Interior+3',
+            'https://placehold.co/1920x1080/6a5acd/FFFFFF?text=Students+in+Class+4', // Example with different colors
+            'https://placehold.co/1920x1080/2E8B57/FFFFFF?text=Mosque+Exterior+5'  // Example with a touch of green
+        ];
+        let currentSlide = 0;
+
+        function createSlides() {
+            if (!sliderContainer) return;
+            images.forEach((src, index) => {
+                const slide = document.createElement('div');
+                slide.classList.add('hero-slide');
+                slide.style.backgroundImage = `url('${src}')`;
+                if (index === 0) slide.classList.add('active');
+                sliderContainer.appendChild(slide);
+            });
+        }
+
+        function nextSlide() {
+            if (!sliderContainer) return;
+            const slides = sliderContainer.querySelectorAll('.hero-slide');
+            if (slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        if (images.length > 0) {
+            createSlides();
+            setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+
+        // --- Scroll Animations ---
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= (window.innerHeight || document.documentElement.clientHeight) * (percentageScroll / 100);
+        };
+        const displayScrollElement = (element) => element.classList.add('visible');
+        const handleScrollAnimation = () => scrollElements.forEach(el => { if (elementInView(el, 85)) displayScrollElement(el); });
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation(); 
+
+        // --- Sticky Header ---
+        const header = document.getElementById('main-header');
+        const logo = header.querySelector('#main-header-logo'); 
+        const navLinks = header.querySelectorAll('nav a:not(.btn-primary)'); 
+        const menuIconSpans = header.querySelectorAll('.menu-icon span');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 50) { 
+                header.classList.add('header-sticky', 'shadow-xl');
+                header.classList.remove('bg-white', 'shadow-sm'); 
+                if (logo) logo.classList.add('text-text-light'); else console.warn("Logo element not found for sticky header.");
+                navLinks.forEach(link => link.style.color = 'var(--text-light)');
+                menuIconSpans.forEach(span => span.style.backgroundColor = 'var(--text-light)');
+            } else {
+                header.classList.remove('header-sticky', 'shadow-xl');
+                header.classList.add('bg-white', 'shadow-sm'); 
+                if (logo) logo.classList.remove('text-text-light');
+                navLinks.forEach(link => link.style.color = 'var(--text-dark)');
+                menuIconSpans.forEach(span => span.style.backgroundColor = 'var(--text-dark)');
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.querySelector('.menu-icon');
+        if (mobileMenuButton && mobileMenu && menuIcon) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isSticky = header.classList.contains('header-sticky');
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('open');
+                if (mobileMenu.classList.contains('hidden')) {
+                     mobileMenu.style.backgroundColor = ''; 
+                } else {
+                    mobileMenu.style.backgroundColor = isSticky ? 'rgba(93, 64, 55, 0.95)' : 'white'; // Brown for sticky
+                     mobileMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = isSticky ? 'var(--text-light)' : 'var(--text-dark)';
+                        link.onmouseover = function() { this.style.backgroundColor = isSticky ? 'rgba(176, 141, 87, 0.2)' : '#FAF3E0'; }; 
+                        link.onmouseout = function() { this.style.backgroundColor = ''; };
+                    });
+                }
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('open');
+                });
+            });
+        }
+        
+        // --- Smooth Scrolling for Anchor Links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    let headerOffset = 0;
+                    const mainHeader = document.getElementById('main-header');
+                    if (mainHeader && getComputedStyle(mainHeader).position === 'fixed') {
+                        headerOffset = mainHeader.offsetHeight;
+                    }
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+            });
+        });
+
+        // --- Set Current Year in Footer ---
+        const currentYearEl = document.getElementById('current-year');
+        if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
+        // Hero text animations
+        const heroH1 = document.querySelector('#hero h1');
+        const heroP = document.querySelector('#hero p');
+        const heroButtonsContainer = document.querySelector('#hero .btn-primary')?.parentElement; 
+        if(heroH1) heroH1.classList.add('animate-fade-in-down-js');
+        if(heroP) { heroP.classList.add('animate-fade-in-up-js'); heroP.style.animationDelay = '0.4s'; }
+        if(heroButtonsContainer) { heroButtonsContainer.classList.add('animate-fade-in-up-js'); heroButtonsContainer.style.animationDelay = '0.8s'; }
+
+        // --- AI Chatbot Functionality ---
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const messagesContainer = document.getElementById('chatbot-messages-container');
+        const promptButtons = document.querySelectorAll('.prompt-button');
+
+        if (chatbotToggle && chatbotWindow && chatbotClose) {
+            chatbotToggle.addEventListener('click', () => {
+                chatbotWindow.classList.toggle('open');
+                chatbotToggle.innerHTML = chatbotWindow.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-hands-helping"></i>';
+            });
+            chatbotClose.addEventListener('click', () => {
+                chatbotWindow.classList.remove('open');
+                chatbotToggle.innerHTML = '<i class="fas fa-hands-helping"></i>';
+            });
+        }
+
+        function addMessageToChat(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.innerHTML = text; // Use innerHTML to render potential HTML in bot messages
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight; 
+        }
+        
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('chat-message', 'bot-message', 'typing-indicator');
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return typingDiv;
+        }
+
+        function removeTypingIndicator(indicator) {
+            if (indicator) messagesContainer.removeChild(indicator);
+        }
+
+        const botResponses = {
+            "dua_majlis_time": "Islahul Uloom conducts a Special Dua Majlis every Friday after Jummah prayers in the main prayer hall. All students, staff, and community members are welcome to attend, Insha'Allah.",
+            "dua_majlis_women_area": "Yes, a separate and comfortable area is arranged for women during the Dua Majlis. This is typically located in the Conference Hall, which is near the parking area for convenience.",
+            "dua_majlis_parking": "Yes, ample parking is available on campus. The area can accommodate minibuses and has space for over 25 cars. We strive to ensure convenient access for all attendees.",
+            "khutub_khana_visit": "Certainly! The Khutub Khana (University Library) is open to students, researchers, and registered visitors. Our general timings are Sunday to Thursday, from 9:00 AM to 6:00 PM. Please bring your university ID or arrange for a visitor pass at the reception. It houses an extensive collection of Islamic texts, manuscripts, and modern research materials.",
+            "default": "I apologize, I can only provide information based on the preset questions at this time. Please select one of the available options, or contact our administration for more specific inquiries."
+        };
+
+        promptButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptKey = button.dataset.prompt;
+                const userMessage = button.textContent;
+                
+                addMessageToChat(userMessage, 'user');
+                const typingIndicator = addTypingIndicator();
+
+                setTimeout(() => {
+                    removeTypingIndicator(typingIndicator);
+                    const botResponse = botResponses[promptKey] || botResponses["default"];
+                    addMessageToChat(botResponse, 'bot');
+                }, 1000 + Math.random() * 500); 
+            });
+        });
+
+    });
+
+    // Add CSS keyframes for JS-triggered hero text animations
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+        @keyframes fadeInDownJS {0% { opacity: 0; transform: translateY(-35px); } 100% { opacity: 1; transform: translateY(0); }}
+        @keyframes fadeInUpJS {0% { opacity: 0; transform: translateY(35px); } 100% { opacity: 1; transform: translateY(0); }}
+        .animate-fade-in-down-js { animation: fadeInDownJS 1s ease-out forwards; opacity:0; }
+        .animate-fade-in-up-js { animation: fadeInUpJS 1s ease-out forwards; opacity:0; }
+    `;
+    document.head.appendChild(styleSheet);
+
+    </script>
+</body>
+</html>
