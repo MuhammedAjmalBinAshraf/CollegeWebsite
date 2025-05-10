@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islahul Uloom | Islamic Higher Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* Custom Styles - Heritage Theme */
+        :root {
+            /* FONTS */
+            /* --font-primary is used for body text, paragraphs, general interface elements. */
+            --font-primary: 'Roboto', 'Inter', sans-serif;
+            /* --font-headings is used for main section titles and hero heading. */
+            --font-headings: 'Merriweather', serif;
+            /* --font-logo is used for the main site logo/name. */
+            --font-logo: 'Bricolage Grotesque', serif;
+            /* --font-arabic is used for Arabic language content. */
+            --font-arabic: 'Tajawal', sans-serif;
+            /* --font-malayalam is used for Malayalam language content. */
+            --font-malayalam: 'Manjari', sans-serif;
+            /* --font-urdu is used for Urdu language content. */
+            --font-urdu: 'Noto Nastaliq Urdu', serif;
+
+            /* COLORS */
+            /* --primary-color-brown is used for primary accents, some text, dark mode elements. */
+            --primary-color-brown: #5D4037;
+            --primary-color-brown-rgb: 93, 64, 55;
+            /* --primary-color-blue is used for other primary elements, often in dark sections. */
+            --primary-color-blue: #001f3f;
+            --primary-color-blue-rgb: 0, 31, 63;
+            /* --accent-color-gold is used for buttons, icons, and highlights. */
+            --accent-color-gold: #B08D57;
+            --accent-color-gold-rgb: 176, 141, 87;
+            /* --accent-color-cream is used for backgrounds or subtle highlights. */
+            --accent-color-cream: #F5F5DC;
+            /* --text-light is for text on dark backgrounds. */
+            --text-light: #F8F9FA;
+            /* --text-dark is for text on light backgrounds. */
+            --text-dark: #212529;
+            /* --bg-light is the primary light background color. */
+            --bg-light: #FAF3E0;
+            /* --bg-medium is a secondary light background or accent background. */
+            --bg-medium: #E0D6C3;
+            /* --bg-dark is the primary dark background color. */
+            --bg-dark: var(--primary-color-blue);
+            /* --bg-dark-secondary is an alternative dark background. */
+            --bg-dark-secondary: var(--primary-color-brown);
+            
+            --chatbot-bg: #ffffff;
+            --chatbot-header-bg: var(--primary-color-brown);
+            --chatbot-text-dark: #333333;
+            --chatbot-text-light: var(--text-light);
+            --user-msg-bg: #E8EAF6; 
+            --bot-msg-bg: #F1F8E9;
+            --input-bg: #F5F5F5;
+            --input-border: #DCDCDC;
+            --card-bg: #ffffff;
+            --card-shadow-color: rgba(0,0,0,0.1);
+            --header-bg: rgba(255, 255, 255, 1);
+            --header-sticky-bg: rgba(var(--primary-color-brown-rgb), 0.95); /* Darker, more opaque sticky */
+            --header-text-color: var(--text-dark);
+            --header-sticky-text-color: var(--text-light);
+            --section-title-color: var(--primary-color-brown);
+            --section-subtitle-color: #757575;
+            --dark-section-title-color: var(--text-light);
+            --dark-section-subtitle-color: rgba(248, 249, 250, 0.85);
+            --map-overlay-color-rgb: var(--primary-color-brown-rgb); /* For map overlay */
+            --image-overlay-color: rgba(var(--primary-color-brown-rgb), 0.2); /* Overlay for general images */
+        }
+
+        .dark-mode {
+            --primary-color-brown: #4a332b;
+            --primary-color-blue: #001429;
+            --accent-color-gold: #c8a573;
+            --accent-color-cream: #e0e0c1;
+            --text-light: #1f2937;
+            --text-dark: #e5e7eb;
+            --bg-light: #211e1c; /* Darker background for dark mode */
+            --bg-medium: #3a302a;
+            --bg-dark: var(--primary-color-blue); 
+            --bg-dark-secondary: var(--primary-color-brown);
+            
+            --chatbot-bg: #2c2c2c;
+            --chatbot-header-bg: var(--primary-color-brown);
+            --chatbot-text-dark: #e0e0e0;
+            --chatbot-text-light: #f0f0f0;
+            --user-msg-bg: #3a3f50;
+            --bot-msg-bg: #303d28;
+            --input-bg: #3a3a3a;
+            --input-border: #505050;
+            --card-bg: #2a2a2a;
+            --card-shadow-color: rgba(0,0,0,0.4);
+            --header-bg: rgba(var(--primary-color-brown-rgb), 0.95);
+            --header-sticky-bg: rgba(var(--primary-color-blue-rgb), 0.9);
+            --header-text-color: var(--text-dark);
+            --header-sticky-text-color: var(--text-dark);
+            --section-title-color: var(--accent-color-gold);
+            --section-subtitle-color: #a0a0a0;
+            --dark-section-title-color: var(--accent-color-gold);
+            --dark-section-subtitle-color: rgba(229, 231, 235, 0.85);
+            --map-overlay-color-rgb: var(--primary-color-blue-rgb);
+            --image-overlay-color: rgba(var(--accent-color-gold-rgb), 0.15);
+        }
+
+        /* Global Body Styles */
+        body {
+            font-family: var(--font-primary);
+            scroll-behavior: smooth;
+            overflow-x: hidden; 
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Language Specific Font Application */
+        html[lang="ar"] body, html[lang="ar"] * { font-family: var(--font-arabic) !important; direction: rtl; }
+        html[lang="ml"] body, html[lang="ml"] * { font-family: var(--font-malayalam) !important; }
+        html[lang="ur"] body, html[lang="ur"] * { font-family: var(--font-urdu) !important; direction: rtl; }
+
+
+        /* Loading Overlay */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        #loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader {
+            border: 5px solid var(--accent-color-cream);
+            border-top: 5px solid var(--accent-color-gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed; left: 0; top: 0; width: 20px; height: 20px;
+            border: 2px solid var(--accent-color-gold); border-radius: 50%;
+            pointer-events: none; transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+            z-index: 9999; mix-blend-mode: difference; 
+        }
+        .custom-cursor.hovered { width: 40px; height: 40px; background-color: rgba(var(--accent-color-gold-rgb), 0.2); }
+        .custom-cursor.clicked { width: 30px; height: 30px; background-color: rgba(var(--accent-color-gold-rgb), 0.4); }
+
+        /* Hero Section Image Slider */
+        #hero-slider-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; }
+        .hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; filter: brightness(0.6); }
+        .hero-slide.active { opacity: 1; }
+
+        /* Scroll Animation */
+        .scroll-animate { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease-out, transform 0.9s ease-out; }
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+
+        /* Header */
+        #main-header {
+            background-color: var(--header-bg);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 1rem 0; /* Replaces py-4 */
+            position: sticky; /* Make header sticky by default */
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+        #main-header-logo {
+            font-family: var(--font-logo); 
+            font-size: 1.8rem; /* Adjusted size */
+            font-weight: 700;
+            color: var(--primary-color-brown);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .dark-mode #main-header-logo { color: var(--accent-color-gold); }
+        #main-header-logo:hover { transform: scale(1.05); color: var(--accent-color-gold); }
+        
+        #main-header.header-sticky {
+            background-color: var(--header-sticky-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        #main-header.header-sticky #main-header-logo { color: var(--header-sticky-text-color); }
+        #main-header.header-sticky #main-header-logo:hover { color: var(--accent-color-gold); }
+        #main-header.header-sticky .header-nav-link { color: var(--header-sticky-text-color); }
+        #main-header.header-sticky .header-nav-link:hover { color: var(--accent-color-gold); }
+        #main-header.header-sticky .header-nav-link::after { background: var(--accent-color-gold); }
+        #main-header.header-sticky .menu-icon i { color: var(--header-sticky-text-color); }
+        #main-header.header-sticky #settings-toggle-button i { color: var(--header-sticky-text-color); }
+
+        .header-nav { display: flex; align-items: center; }
+        .header-nav-link {
+            position: relative; text-decoration: none;
+            color: var(--header-text-color); 
+            font-weight: 500;
+            padding: 0.5rem 1rem; 
+            transition: color 0.3s ease;
+        }
+        .header-nav-link:not(.btn-primary)::after { 
+            content: ''; position: absolute; width: 0; height: 2px;
+            display: block; margin-top: 5px; right: 0;
+            background: var(--accent-color-gold);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .header-nav-link:not(.btn-primary):hover::after { width: 100%; left: 0; }
+        .header-nav-link:not(.btn-primary):hover { color: var(--accent-color-gold); }
+
+        .menu-icon i { font-size: 28px; color: var(--header-text-color); transition: color 0.3s ease; }
+        #settings-toggle-button i { color: var(--header-text-color); transition: color 0.3s ease; }
+
+        #mobile-menu {
+            display: none; position: absolute;
+            top: 100%; left: 0; width: 100%;
+            background-color: var(--header-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 0.5rem 0; z-index: 999;
+        }
+        #mobile-menu.show { display: block; }
+        #mobile-menu a {
+            display: block; padding: 0.75rem 1.5rem; 
+            color: var(--header-text-color); text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        #mobile-menu a:hover { background-color: var(--input-bg); color: var(--accent-color-gold); }
+        #main-header.header-sticky #mobile-menu { background-color: var(--header-sticky-bg); }
+        #main-header.header-sticky #mobile-menu a { color: var(--header-sticky-text-color); }
+        #main-header.header-sticky #mobile-menu a:hover {
+            background-color: rgba(var(--accent-color-gold-rgb), 0.1);
+            color: var(--accent-color-gold);
+        }
+
+        .header-desktop-nav { display: none; } 
+        .header-mobile-controls { display: flex; align-items: center; }
+        @media (min-width: 768px) { /* md breakpoint */
+            .header-desktop-nav { display: flex; }
+            .header-mobile-controls .md-hidden { display: none; } 
+        }
+
+        .section-padding { padding-top: 6rem; padding-bottom: 6rem; } 
+        @media (max-width: 768px) { .section-padding { padding-top: 4rem; padding-bottom: 4rem; } }
+
+        .custom-card {
+            background-color: var(--card-bg);
+            box-shadow: 0 10px 25px -5px var(--card-shadow-color), 0 8px 10px -6px var(--card-shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            border-radius: 0.75rem; 
+        }
+        .custom-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 18px 35px -8px var(--card-shadow-color), 0 12px 20px -8px var(--card-shadow-color);
+        }
+
+        .btn {
+            padding: 0.75rem 1.6rem; border-radius: 0.375rem; font-weight: 600; 
+            transition: all 0.3s ease; display: inline-block; text-align: center; letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background-color: var(--accent-color-gold); color: var(--primary-color-brown); 
+            box-shadow: 0 4px 15px rgba(var(--accent-color-gold-rgb), 0.3);
+        }
+        .btn-primary:hover {
+            background-color: color-mix(in srgb, var(--accent-color-gold) 80%, black); color: white;
+            transform: translateY(-3px); box-shadow: 0 6px 20px rgba(var(--accent-color-gold-rgb), 0.4);
+        }
+        .btn-secondary {
+            background-color: transparent; color: var(--accent-color-gold);
+            border: 2px solid var(--accent-color-gold);
+        }
+        .btn-secondary:hover { background-color: var(--accent-color-gold); color: var(--primary-color-brown); transform: translateY(-3px); }
+        #hero .btn-secondary { color: var(--text-light); border-color: var(--text-light); }
+        #hero .btn-secondary:hover { background-color: var(--text-light); color: var(--primary-color-blue); }
+
+        .section-title { font-size: 2.5rem; font-weight: 700; color: var(--section-title-color); margin-bottom: 1rem; transition: color 0.3s ease; font-family: var(--font-headings); }
+        .section-subtitle { font-size: 1.15rem; color: var(--section-subtitle-color); max-width: 768px; margin-left: auto; margin-right: auto; margin-bottom: 3.5rem; transition: color 0.3s ease; }
+        .dark-section .section-title { color: var(--dark-section-title-color); }
+        .dark-section .section-subtitle { color: var(--dark-section-subtitle-color); opacity: 0.85; }
+
+        .image-container-overlay {
+            position: relative; overflow: hidden; border-radius: 0.75rem; 
+        }
+        .image-container-overlay::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--image-overlay-color); z-index: 1;
+            pointer-events: none; opacity: 0.6; transition: opacity 0.3s ease;
+        }
+        .image-container-overlay:hover::before { opacity: 0.2; }
+        .image-container-overlay img {
+            display: block; width: 100%; height: 100%; 
+            object-fit: cover; position: relative; z-index: 0;
+        }
+        #about .image-container-overlay { box-shadow: 0 10px 25px -5px var(--card-shadow-color); }
+
+        .donation-qr-code { border: 4px solid var(--accent-color-gold); padding: 8px; border-radius: 0.5rem; background-color: white; }
+
+        .testimonial-card { background-color: var(--card-bg); border-left: 5px solid var(--accent-color-gold); transition: background-color 0.3s ease, border-color 0.3s ease; }
+        .testimonial-card img { width: 80px; height: 80px; border: 3px solid var(--accent-color-cream); }
+        .testimonial-quote { font-style: italic; color: color-mix(in srgb, var(--text-dark) 70%, transparent); transition: color 0.3s ease; }
+        .dark-mode .testimonial-quote { color: color-mix(in srgb, var(--text-dark) 70%, transparent); }
+        .testimonial-author { color: var(--primary-color-brown); transition: color 0.3s ease; }
+        .dark-mode .testimonial-author { color: var(--accent-color-gold); }
+
+        #chatbot-toggle {
+            position: fixed; bottom: 25px; right: 25px;
+            background-color: var(--accent-color-gold); color: var(--primary-color-brown);
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer; z-index: 1001; transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+        }
+        #chatbot-toggle:hover { transform: scale(1.1); background-color: color-mix(in srgb, var(--accent-color-gold) 80%, black); }
+
+        #chatbot-window {
+            position: fixed; bottom: 100px; right: 25px;
+            width: 370px; max-width: 90vw; height: 550px; max-height: 75vh;
+            background-color: var(--chatbot-bg); border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; overflow: hidden;
+            z-index: 1000; opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, width 0.3s ease, height 0.3s ease;
+            pointer-events: none;
+        }
+        #chatbot-window.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+        .chatbot-header { background-color: var(--chatbot-header-bg); color: var(--chatbot-text-light); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-top-left-radius: 10px; border-top-right-radius: 10px; transition: background-color 0.3s ease, color 0.3s ease; }
+        .chatbot-header h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+        #chatbot-close { background: none; border: none; color: var(--chatbot-text-light); font-size: 20px; cursor: pointer; transition: color 0.3s ease; }
+
+        #chatbot-messages-container { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; }
+        .chat-message { padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; max-width: 80%; line-height: 1.4; font-size: 0.9rem; transition: background-color 0.3s ease, color 0.3s ease; }
+        .user-message { background-color: var(--user-msg-bg); color: var(--chatbot-text-dark); align-self: flex-end; border-bottom-right-radius: 5px; }
+        .bot-message { background-color: var(--bot-msg-bg); color: var(--chatbot-text-dark); align-self: flex-start; border-bottom-left-radius: 5px; }
+        .bot-message.typing-indicator span, .bot-message.connecting-indicator span { display: inline-block; width: 8px; height: 8px; margin: 0 2px; background-color: var(--accent-color-gold); border-radius: 50%; animation: typing 1s infinite ease-in-out; }
+        .bot-message.typing-indicator span:nth-child(2), .bot-message.connecting-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .bot-message.typing-indicator span:nth-child(3), .bot-message.connecting-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing { 0%, 100% { opacity: 0.3; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1); } }
+
+        #chatbot-input-area { padding: 15px; border-top: 1px solid var(--input-border); display: flex; gap: 10px; background-color: var(--chatbot-bg); transition: border-color 0.3s ease, background-color 0.3s ease; }
+        #chatbot-input { flex-grow: 1; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--input-border); background-color: var(--input-bg); color: var(--chatbot-text-dark); font-size: 0.9rem; outline: none; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        #chatbot-input:focus { border-color: var(--accent-color-gold); box-shadow: 0 0 0 2px rgba(var(--accent-color-gold-rgb), 0.3); }
+        #chatbot-send-btn { background-color: var(--accent-color-gold); color: var(--primary-color-brown); border: none; padding: 0 18px; border-radius: 20px; font-size: 1rem; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease, color 0.3s ease; }
+        #chatbot-send-btn:hover { background-color: color-mix(in srgb, var(--accent-color-gold) 80%, black); color: white; }
+
+        #chatbot-prompts-toggle {
+            background: none; border: none; color: var(--primary-color-brown);
+            padding: 8px 15px; cursor: pointer; font-size: 0.85rem; text-align: center;
+            border-top: 1px solid var(--input-border);
+            transition: color 0.3s ease;
+        }
+        .dark-mode #chatbot-prompts-toggle { color: var(--accent-color-gold); }
+        #chatbot-prompts-toggle:hover { text-decoration: underline; }
+        #chatbot-prompts-container {
+            display: none; padding: 0 15px 10px 15px;
+            border-top: 1px solid var(--input-border);
+            max-height: 150px; overflow-y: auto;
+            background-color: var(--chatbot-bg); 
+        }
+        #chatbot-prompts-container.visible { display: flex; flex-direction: column; gap: 8px; }
+        .prompt-button { background-color: var(--input-bg); color: var(--primary-color-brown); border: 1px solid var(--input-border); padding: 10px; border-radius: 8px; cursor: pointer; text-align: left; font-size: 0.85rem; transition: background-color 0.2s ease, color 0.3s ease, border-color 0.3s ease; }
+        .dark-mode .prompt-button { color: var(--accent-color-gold); }
+        .prompt-button:hover { background-color: color-mix(in srgb, var(--input-bg) 90%, black); }
+
+        footer .fab { transition: color 0.3s ease, transform 0.3s ease; }
+        footer .fab:hover { color: var(--accent-color-gold) !important; transform: scale(1.1); }
+
+        #settings-panel {
+            position: fixed; top: 70px; right: -300px; width: 280px;
+            background-color: var(--card-bg); color: var(--text-dark);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1); padding: 20px; z-index: 1005;
+            transition: right 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+            border-radius: 8px 0 0 8px;
+        }
+        #settings-panel.open { right: 0; }
+        #settings-panel h4 { color: var(--primary-color-brown); margin-bottom: 15px; font-weight: 600; border-bottom: 1px solid var(--input-border); padding-bottom: 10px; }
+        .dark-mode #settings-panel h4 { color: var(--accent-color-gold); }
+        .settings-group { margin-bottom: 20px; }
+        .settings-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 500; }
+        .settings-button, .theme-toggle-button {
+            background-color: var(--input-bg); color: var(--text-dark); border: 1px solid var(--input-border);
+            padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            width: 100%; text-align: left; margin-bottom: 5px;
+        }
+        .settings-button:hover, .theme-toggle-button:hover { background-color: color-mix(in srgb, var(--input-bg) 90%, black); border-color: var(--accent-color-gold); }
+        .theme-toggle-button.active { background-color: var(--accent-color-gold); color: var(--primary-color-brown); border-color: var(--accent-color-gold); }
+        .dark-mode .theme-toggle-button.active { color: white; }
+
+        /* Small Map in Contact Section */
+        #contact-map-container { margin-top: 2rem; /* Add some space if needed */ }
+        #small-location-map { 
+            position: relative; 
+            border-radius: 0.75rem; 
+            overflow: hidden; 
+            box-shadow: 0 5px 10px -3px var(--card-shadow-color);
+            height: 250px; /* Adjust height as needed */
+        }
+        #small-location-map iframe { display: block; width: 100%; height: 100%; border:0; transition: filter 0.5s ease; }
+        #small-location-map::after { /* Overlay for map color grading */
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(var(--map-overlay-color-rgb), 0.15); /* Use the new variable */
+            mix-blend-mode: multiply; 
+            pointer-events: none; 
+            z-index: 1;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+        .dark-mode #small-location-map::after {
+            background-color: rgba(var(--map-overlay-color-rgb), 0.25); /* Use the new variable */
+            mix-blend-mode: screen;
+        }
+
+
+        .form-input, .form-textarea { background-color: var(--input-bg); color: var(--text-dark); border-color: var(--input-border); transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        .form-input:focus, .form-textarea:focus { border-color: var(--accent-color-gold); box-shadow: 0 0 0 2px rgba(var(--accent-color-gold-rgb), 0.3); background-color: var(--card-bg); }
+
+        #gallery { background-color: var(--bg-medium); }
+        .photo-essay-item {
+            display: flex; flex-direction: column; margin-bottom: 4rem;
+            background-color: var(--card-bg); border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px var(--card-shadow-color); overflow: hidden;
+        }
+        .photo-essay-item:last-child { margin-bottom: 0; }
+        .photo-essay-image-wrapper { width: 100%; position: relative; overflow: hidden; }
+        .photo-essay-image-wrapper img {
+            display: block; width: 100%; height: 400px; 
+            object-fit: cover; filter: grayscale(100%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+        .photo-essay-image-wrapper:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        .photo-essay-content { padding: 2rem; width: 100%; }
+        .photo-essay-content h3 {
+            font-family: var(--font-headings); font-size: 1.8rem;
+            color: var(--primary-color-brown); margin-bottom: 0.75rem;
+        }
+        .dark-mode .photo-essay-content h3 { color: var(--accent-color-gold); }
+        .photo-essay-content p { font-size: 1rem; line-height: 1.7; color: var(--text-dark); opacity: 0.85; }
+        .dark-mode .photo-essay-content p { opacity: 0.9; }
+        .photo-essay-content .description-symbol { font-size: 2.5rem; color: var(--accent-color-gold); margin-bottom: 0.5rem; display: block; }
+
+        @media (min-width: 768px) { 
+            .photo-essay-item { flex-direction: row; }
+            .photo-essay-item:nth-child(even) { flex-direction: row-reverse; }
+            .photo-essay-image-wrapper { width: 55%; height: auto; } 
+            .photo-essay-image-wrapper img { height: 100%; min-height: 450px; } 
+            .photo-essay-content { width: 45%; display: flex; flex-direction: column; justify-content: center;}
+        }
+        @media (min-width: 1024px) { 
+             .photo-essay-image-wrapper img { min-height: 500px; }
+        }
+
+        #timeline { background-color: var(--bg-light); }
+        .timeline-container {
+            display: flex; overflow-x: auto; padding: 2rem 0;
+            scrollbar-width: thin; scrollbar-color: var(--accent-color-gold) var(--bg-medium); 
+        }
+        .timeline-container::-webkit-scrollbar { height: 10px; }
+        .timeline-container::-webkit-scrollbar-track { background: var(--bg-medium); border-radius: 5px; }
+        .timeline-container::-webkit-scrollbar-thumb { background-color: var(--accent-color-gold); border-radius: 5px; border: 2px solid var(--bg-medium); }
+        .timeline-container::-webkit-scrollbar-thumb:hover { background-color: color-mix(in srgb, var(--accent-color-gold) 80%, black); }
+
+        .timeline-item {
+            flex: 0 0 320px; margin-right: 2rem;
+            background-color: var(--card-bg); border-radius: 0.75rem;
+            box-shadow: 0 8px 20px -8px var(--card-shadow-color);
+            padding: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; border-top: 5px solid var(--accent-color-gold);
+        }
+        .timeline-item:last-child { margin-right: 0; }
+        .timeline-item:hover { transform: translateY(-8px); box-shadow: 0 12px 25px -5px var(--card-shadow-color); }
+        .timeline-year {
+            font-family: var(--font-headings); font-size: 2rem; font-weight: 700;
+            color: var(--primary-color-brown); margin-bottom: 0.75rem;
+        }
+        .dark-mode .timeline-year { color: var(--accent-color-gold); }
+        .timeline-image-wrapper {
+            width: 100%; height: 180px; border-radius: 0.5rem;
+            overflow: hidden; margin-bottom: 1rem; background-color: var(--bg-medium); 
+        }
+        .timeline-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .timeline-title { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .dark-mode .timeline-title { color: var(--text-dark); } 
+        .timeline-description { font-size: 0.9rem; color: var(--text-dark); opacity: 0.8; line-height: 1.6; }
+        .dark-mode .timeline-description { opacity: 0.85; }
+
+        /* Virtual Tour Section */
+        #virtual-tour { background-color: var(--bg-light); } /* Or var(--bg-medium) for contrast */
+        .dark-mode #virtual-tour { background-color: var(--bg-medium); }
+        .virtual-tour-video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px; /* Max width for larger screens */
+            margin: 0 auto; /* Center the video container */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem; /* Tailwind rounded-xl */
+            box-shadow: 0 10px 25px -5px var(--card-shadow-color), 0 8px 10px -6px var(--card-shadow-color); /* Consistent shadow */
+        }
+        .virtual-tour-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+        #partners { background-color: var(--bg-medium); }
+        .partners-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem; align-items: center;
+        }
+        .partner-logo-container {
+            padding: 1.5rem; background-color: var(--card-bg); 
+            border-radius: 0.5rem; display: flex;
+            justify-content: center; align-items: center;
+            height: 120px; box-shadow: 0 4px 10px -5px var(--card-shadow-color);
+        }
+        .partner-logo-container img {
+            max-width: 100%; max-height: 70px; 
+            filter: grayscale(100%) opacity(0.7);
+            transition: filter 0.4s ease, transform 0.3s ease;
+        }
+        .partner-logo-container:hover img {
+            filter: grayscale(0%) opacity(1); transform: scale(1.05);
+        }
+        .dark-mode .partner-logo-container img { filter: grayscale(100%) opacity(0.6) invert(10%); }
+        .dark-mode .partner-logo-container:hover img { filter: grayscale(0%) opacity(1) ; transform: scale(1.05); }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <div class="custom-cursor"></div>
+
+    <header id="main-header" class="shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#hero" id="main-header-logo">
+                <i class="fas fa-mosque mr-2 opacity-75"></i>Islahul Uloom
+            </a>
+            
+            <nav class="header-desktop-nav header-nav">
+                <a href="#hero" class="header-nav-link">Home</a>
+                <a href="#about" class="header-nav-link">About Us</a>
+                <a href="#programs" class="header-nav-link">Programs</a>
+                <a href="#timeline" class="header-nav-link">Journey</a>
+                <a href="#gallery" class="header-nav-link">Gallery</a>
+                <a href="#virtual-tour" class="header-nav-link">Virtual Tour</a> 
+                <a href="#news" class="header-nav-link">News</a>
+                <a href="#contact" class="header-nav-link">Contact</a>
+            </nav>
+
+            <div class="header-mobile-controls flex items-center">
+                <button id="settings-toggle-button" class="text-xl p-2 mr-1 focus:outline-none" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <div class="md-hidden"> <button id="mobile-menu-button" class="focus:outline-none menu-icon text-2xl p-2" aria-label="Open menu">
+                        <i class="bi bi-list"></i> 
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu"> 
+            <a href="#hero" class="block">Home</a>
+            <a href="#about" class="block">About Us</a>
+            <a href="#programs" class="block">Programs</a>
+            <a href="#timeline" class="block">Our Journey</a>
+            <a href="#gallery" class="block">Gallery</a>
+            <a href="#virtual-tour" class="block">Virtual Tour</a>
+            <a href="#facilities" class="block">Facilities</a>
+            <a href="#testimonials" class="block">Testimonials</a>
+            <a href="#donations" class="block">Donate</a>
+            <a href="#news" class="block">News & Events</a>
+            <a href="#contact" class="block">Contact</a>
+        </div>
+    </header>
+
+    <div id="settings-panel" class="shadow-xl">
+        <button id="close-settings-panel" class="absolute top-4 right-4 text-xl focus:outline-none">
+            <i class="fas fa-times"></i>
+        </button>
+        <h4>Settings</h4>
+        <div class="settings-group">
+            <label for="language-select">Language</label>
+            <button class="settings-button" data-lang="en">English</button>
+            <button class="settings-button" data-lang="ar">العربية (Arabic)</button>
+            <button class="settings-button" data-lang="ml">മലയാളം (Malayalam)</button>
+            <button class="settings-button" data-lang="ur">اردو (Urdu)</button>
+        </div>
+        <div class="settings-group">
+            <label>Theme Mode</label>
+            <div class="flex space-x-2">
+                <button id="light-mode-btn" class="theme-toggle-button flex-1 active"><i class="fas fa-sun mr-2"></i>Light</button>
+                <button id="dark-mode-btn" class="theme-toggle-button flex-1"><i class="fas fa-moon mr-2"></i>Dark</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="hero" class="relative text-white min-h-screen flex items-center justify-center overflow-hidden" style="background-color: var(--primary-color-blue);">
+        <div id="hero-slider-container">
+            </div>
+        <div class="relative z-10 text-center p-6 space-y-8 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight" style="font-family: var(--font-headings);">
+                Legacy of Learning, Beacon of Faith
+            </h1>
+            <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto" style="animation-delay: 0.5s;">
+                Islahul Uloom: Nurturing generations with profound Islamic knowledge and unwavering values since 1924.
+            </p>
+            <div style="animation-delay: 1s;">
+                <a href="#programs" class="btn btn-primary text-lg mr-4">Our Programs</a>
+                <a href="#about" class="btn btn-secondary text-lg">Discover Islahul Uloom</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#about" aria-label="Scroll down">
+                <svg class="w-10 h-10 text-white opacity-70 animate-bounce hover:opacity-100 transition-opacity" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding bg-transparent"> <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Welcome to Islahul Uloom</h2>
+                <p class="section-subtitle">
+                    A historic institution committed to excellence in Islamic higher education, blending rich heritage with contemporary academic pursuits. <br> Affiliated to Darul Huda Islamic University, Chemmad.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animate image-container-overlay rounded-xl overflow-hidden shadow-2xl">
+                    <img src="https://scontent.fcok6-2.fna.fbcdn.net/v/t39.30808-6/491120252_1166133772192027_8300800480606444846_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pcuv6pCThfkQ7kNvwG2QQFe&_nc_oc=AdmPys7RGJQ4JmcO_t6Ea9_os5m4WsB0ay4z64n_FMEV9MLtOulnVPcc1fjMpycyXXc&_nc_zt=23&_nc_ht=scontent.fcok6-2.fna&_nc_gid=X87B5bVR96YHUor-6U6G0A&oh=00_AfIGo4L-jLW0wAIvdbdyyOY5Cmgxkn8QvkFjbaJxi28xGA&oe=6823A70C" alt="Islahul Uloom Campus" class="w-full h-auto object-cover">
+                </div>
+                <div class="space-y-6 scroll-animate" style="transition-delay: 0.2s;">
+                    <h3 class="text-3xl font-semibold" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Our Enduring Mission & Vision</h3>
+                     <p class="leading-relaxed text-lg" style="color: var(--text-dark);">
+                        To be a distinguished center of Islamic learning that empowers individuals with authentic knowledge, fosters critical thinking, and instills strong moral values to serve the Ummah and humanity at large. We envision graduates who are not only scholars but also community leaders and global citizens.
+                    </p>
+                    <ul class="space-y-3" style="color: var(--text-dark);">
+                        <li class="flex items-start text-lg"><i class="fas fa-book-reader text-xl mr-3" style="color: var(--accent-color-gold);"></i> Deep-rooted traditional Islamic scholarship.</li>
+                        <li class="flex items-start text-lg"><i class="fas fa-chalkboard-teacher text-xl mr-3" style="color: var(--accent-color-gold);"></i> Experienced faculty dedicated to student mentorship.</li>
+                        <li class="flex items-start text-lg"><i class="fas fa-hands-helping text-xl mr-3" style="color: var(--accent-color-gold);"></i> Commitment to community service and ethical leadership.</li>
+                    </ul>
+                    <a href="#timeline" class="btn btn-primary mt-4">Our Rich History</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="timeline" class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Our Journey Through Time</h2>
+                <p class="section-subtitle">
+                    Tracing the milestones of Islahul Uloom's century of dedication to knowledge and faith.
+                </p>
+            </div>
+            <div class="timeline-container scroll-animate" id="timelineScroller">
+                </div>
+        </div>
+    </section>
+
+    <section id="programs" class="section-padding" style="background-color: var(--bg-medium);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Academic Offerings</h2>
+                <p class="section-subtitle">
+                    Explore our comprehensive degree programs designed to provide a profound understanding of Islamic sciences and their application in the modern world.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="custom-card p-8 scroll-animate">
+                    <div class="text-5xl mb-6" style="color: var(--accent-color-gold);"><i class="fas fa-kaaba"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Sharia & Islamic Law</h3>
+                    <p class="mb-6" style="color: var(--text-dark); opacity:0.8;">Advanced studies in Islamic jurisprudence, legal theory, and contemporary applications.</p>
+                    <a href="#" class="font-semibold group" style="color: var(--primary-color-brown);">Learn More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+                <div class="custom-card p-8 scroll-animate" style="transition-delay: 0.2s;">
+                    <div class="text-5xl mb-6" style="color: var(--accent-color-gold);"><i class="fas fa-quran"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Quranic Studies & Tafsir</h3>
+                    <p class="mb-6" style="color: var(--text-dark); opacity:0.8;">In-depth exegesis of the Holy Quran, Hadith studies, and classical Arabic literature.</p>
+                    <a href="#" class="font-semibold group" style="color: var(--primary-color-brown);">Learn More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+                <div class="custom-card p-8 scroll-animate" style="transition-delay: 0.4s;">
+                    <div class="text-5xl mb-6" style="color: var(--accent-color-gold);"><i class="fas fa-mosque"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Islamic History & Civilization</h3>
+                    <p class="mb-6" style="color: var(--text-dark); opacity:0.8;">Exploring the rich tapestry of Islamic heritage, culture, and its global impact.</p>
+                    <a href="#" class="font-semibold group" style="color: var(--primary-color-brown);">Learn More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+            </div>
+            <div class="text-center mt-16 scroll-animate">
+                <a href="#" class="btn btn-primary text-lg">View All Programs</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery" class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Glimpses of Islahul Uloom</h2>
+                <p class="section-subtitle">
+                    A visual journey through our campus, events, and the vibrant life of our community.
+                </p>
+            </div>
+            <div class="scroll-animate">
+                <div class="photo-essay-item">
+                    <div class="photo-essay-image-wrapper">
+                        <img src="https://placehold.co/800x600/5D4037/FAF3E0?text=Historic+Main+Building" alt="Historic Main Building of Islahul Uloom" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Available';">
+                    </div>
+                    <div class="photo-essay-content">
+                        <span class="description-symbol"><</span>
+                        <h3>The Heart of Our Heritage</h3>
+                        <p>The iconic main building, standing tall since the early days, symbolizes our deep-rooted commitment to traditional Islamic scholarship. It has witnessed generations of students embark on their quest for knowledge.</p>
+                    </div>
+                </div>
+
+                <div class="photo-essay-item">
+                    <div class="photo-essay-image-wrapper">
+                        <img src="https://placehold.co/800x600/001f3f/FAF3E0?text=Students+in+Library" alt="Students studying in the Khutub Khana" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Available';">
+                    </div>
+                    <div class="photo-essay-content">
+                         <span class="description-symbol"><</span>
+                        <h3>The Pursuit of Knowledge</h3>
+                        <p>Our Khutub Khana (library) serves as a sanctuary for learning, housing thousands of classical texts and modern research materials. Here, students delve deep into the ocean of Islamic wisdom.</p>
+                    </div>
+                </div>
+
+                <div class="photo-essay-item">
+                    <div class="photo-essay-image-wrapper">
+                        <img src="https://placehold.co/800x600/B08D57/FFFFFF?text=Annual+Cultural+Event" alt="Annual Cultural Event at Islahul Uloom" onerror="this.onerror=null;this.src='https://placehold.co/800x600/cccccc/333333?text=Image+Not+Available';">
+                    </div>
+                    <div class="photo-essay-content">
+                         <span class="description-symbol"><</span>
+                        <h3>Celebrating Our Culture</h3>
+                        <p>Annual events bring our community together, showcasing diverse talents and fostering a spirit of brotherhood and cultural appreciation, rooted in Islamic values.</p>
+                    </div>
+                </div>
+                 </div>
+        </div>
+    </section>
+
+    <section id="facilities" class="section-padding bg-transparent">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Our Campus & Facilities</h2>
+                <p class="section-subtitle">
+                    A conducive environment for learning and spiritual growth, equipped with modern amenities while preserving our esteemed heritage.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 scroll-animate custom-card">
+                     <div class="image-container-overlay rounded-lg shadow-lg mb-6 w-full h-64">
+                        <img src="https://placehold.co/400x300/5D4037/FAF3E0?text=Khutub+Khana+(Library)" alt="University Library" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Not+Found';">
+                     </div>
+                    <h3 class="text-2xl font-semibold mb-2" style="color: var(--primary-color-brown); font-family: var(--font-headings);">The Khutub Khana</h3>
+                    <p style="color: var(--text-dark); opacity:0.8;">A vast repository of classical texts, manuscripts, and contemporary Islamic scholarship.</p>
+                </div>
+                <div class="text-center p-6 scroll-animate custom-card" style="transition-delay: 0.2s;">
+                    <div class="image-container-overlay rounded-lg shadow-lg mb-6 w-full h-64">
+                        <img src="https://placehold.co/400x300/A1887F/FFFFFF?text=Spacious+Prayer+Hall" alt="Prayer Hall" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Serene Prayer Halls</h3>
+                    <p style="color: var(--text-dark); opacity:0.8;">Spacious and tranquil prayer areas for students and faculty, fostering spiritual reflection.</p>
+                </div>
+                <div class="text-center p-6 scroll-animate custom-card" style="transition-delay: 0.4s;">
+                     <div class="image-container-overlay rounded-lg shadow-lg mb-6 w-full h-64">
+                        <img src="https://placehold.co/400x300/001f3f/FAF3E0?text=Smart+Lecture+Rooms" alt="Smart Classroom" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Modern Lecture Rooms</h3>
+                    <p style="color: var(--text-dark); opacity:0.8;">Equipped with smart technology to enhance interactive learning experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section-padding bg-transparent">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Voices of Our Community</h2>
+                <p class="section-subtitle">
+                    Hear from our students, alumni, and faculty about their experiences at Islahul Uloom.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate custom-card">
+                    <img src="https://placehold.co/80x80/5D4037/FFFFFF?text=AA" alt="Alumni Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"Islahul Uloom provided me with a profound understanding of Islamic sciences and shaped my character. The guidance from the scholars here is invaluable."</p>
+                    <p class="testimonial-author font-semibold text-center">Ahmed Al-Farsi</p>
+                    <p class="text-sm text-center" style="color: var(--text-dark); opacity:0.6;">Alumnus, Class of 2018</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate custom-card" style="transition-delay: 0.1s;">
+                    <img src="https://placehold.co/80x80/B08D57/FFFFFF?text=FS" alt="Faculty Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"Teaching at Islahul Uloom is a privilege. The commitment to authentic knowledge and the students' zeal for learning is truly inspiring."</p>
+                    <p class="testimonial-author font-semibold text-center">Dr. Fatima Siddiqui</p>
+                    <p class="text-sm text-center" style="color: var(--text-dark); opacity:0.6;">Professor, Dept. of Tafsir</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg shadow-lg scroll-animate custom-card" style="transition-delay: 0.2s;">
+                    <img src="https://placehold.co/80x80/001f3f/FFFFFF?text=US" alt="Student Name" class="rounded-full mx-auto mb-4">
+                    <p class="testimonial-quote mb-4">"The supportive community and the depth of knowledge I'm gaining here are beyond my expectations. It's a transformative journey."</p>
+                    <p class="testimonial-author font-semibold text-center">Usman Shareef</p>
+                    <p class="text-sm text-center" style="color: var(--text-dark); opacity:0.6;">Current Student, Sharia Program</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="donations" class="section-padding" style="background-color: var(--bg-dark-secondary);">
+        <div class="container mx-auto px-6 dark-section">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Support Our Legacy (Sadaqah Jariyah)</h2>
+                <p class="section-subtitle">
+                    Your contributions fuel our mission to provide outstanding Islamic education and uphold our cherished heritage.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animate space-y-6 text-gray-300">
+                    <h3 class="text-3xl font-semibold text-white" style="font-family: var(--font-headings);">Invest in Knowledge, Secure the Future</h3>
+                    <p class="leading-relaxed">
+                        Your support enables us to:
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><i class="fas fa-user-graduate text-xl mr-3" style="color: var(--accent-color-gold);"></i> Provide scholarships to deserving students.</li>
+                        <li class="flex items-start"><i class="fas fa-book-open-reader text-xl mr-3" style="color: var(--accent-color-gold);"></i> Enrich our Khutub Khana and research endeavors.</li>
+                        <li class="flex items-start"><i class="fas fa-lightbulb text-xl mr-3" style="color: var(--accent-color-gold);"></i> Innovate academic programs and community services.</li>
+                    </ul>
+                    <p class="leading-relaxed mt-4 text-sm">
+                        The Prophet (ﷺ) said: "When a person dies, his deeds come to an end except for three: Sadaqah Jariyah (a continuing charity), or knowledge from which benefit is obtained, or a pious child who prays for him." (Muslim)
+                    </p>
+                </div>
+                <div class="scroll-animate p-8 md:p-10 rounded-xl shadow-2xl text-center custom-card" style="background-color: var(--primary-color-blue); transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Donate via UPI</h3>
+                    <img src="https://placehold.co/250x250/FFFFFF/5D4037?text=QR+Code+IU" alt="UPI QR Code for Islahul Uloom Donations" class="mx-auto mb-6 donation-qr-code w-48 h-48 md:w-60 md:h-60" onerror="this.onerror=null;this.src='https://placehold.co/250x250/FFFFFF/5D4037?text=QR+Code';">
+                    <p class="text-lg text-gray-300 mb-2">Our UPI ID:</p>
+                    <p class="text-2xl font-bold text-white mb-6 select-all" style="color: var(--accent-color-gold);">islahululoom@upi</p>
+                    <a href="#" class="btn btn-primary w-full text-lg">Donate Securely Online</a>
+                    <p class="text-xs text-gray-400 mt-4">For bank transfers or other methods, please <a href="#contact" class="underline hover:text-accent-color-gold">contact us</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="section-padding bg-transparent">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Latest News & Happenings</h2>
+                <p class="section-subtitle">
+                    Stay updated with the vibrant academic and community life at Islahul Uloom.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="custom-card rounded-xl overflow-hidden scroll-animate">
+                    <div class="image-container-overlay w-full h-56">
+                        <img src="https://placehold.co/600x400/5D4037/FFFFFF?text=Heritage+Lecture+Series" alt="Heritage Lecture" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm font-semibold mb-2" style="color: var(--accent-color-gold);">OCT 15, 2025 | LECTURE SERIES</p>
+                        <h3 class="text-xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Renowned Scholar Inaugurates Heritage Lecture</h3>
+                        <p class="text-sm mb-4" style="color: var(--text-dark); opacity:0.8;">Exploring the intellectual legacy of early Islamic thinkers...</p>
+                        <a href="#" class="font-medium group" style="color: var(--primary-color-brown);">Read More <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+                </div>
+                <div class="custom-card rounded-xl overflow-hidden scroll-animate" style="transition-delay: 0.2s;">
+                    <div class="image-container-overlay w-full h-56">
+                        <img src="https://placehold.co/600x400/B08D57/000000?text=Community+Iftar+Gathering" alt="Community Iftar" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm font-semibold mb-2" style="color: var(--accent-color-gold);">RAMADAN 1447 AH | COMMUNITY</p>
+                        <h3 class="text-xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Annual Community Iftar Fosters Unity</h3>
+                        <p class="text-sm mb-4" style="color: var(--text-dark); opacity:0.8;">Students, faculty, and local residents share blessings of the holy month...</p>
+                        <a href="#" class="font-medium group" style="color: var(--primary-color-brown);">Event Highlights <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+                </div>
+                <div class="custom-card rounded-xl overflow-hidden scroll-animate" style="transition-delay: 0.4s;">
+                    <div class="image-container-overlay w-full h-56">
+                        <img src="https://placehold.co/600x400/001f3f/FFFFFF?text=Student+Research+Symposium" alt="Research Symposium" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found';">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm font-semibold mb-2" style="color: var(--accent-color-gold);">NOV 05, 2025 | ACADEMIC</p>
+                        <h3 class="text-xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Students Showcase Research at Symposium</h3>
+                        <p class="text-sm mb-4" style="color: var(--text-dark); opacity:0.8;">Presenting insightful papers on contemporary Islamic issues...</p>
+                        <a href="#" class="font-medium group" style="color: var(--primary-color-brown);">View Abstracts <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="virtual-tour" class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Explore Our Campus Virtually</h2>
+                <p class="section-subtitle">
+                    Take a walk through Islahul Uloom from anywhere in the world with our immersive virtual tour.
+                </p>
+            </div>
+            <div class="virtual-tour-video-container scroll-animate">
+                <iframe 
+                    src="https://www.youtube.com/embed/wZL6Ku_yG_0?si=AMTAn4ELjBbLQAJq" 
+                    title="Islahul Uloom Virtual Tour - Placeholder" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Our Esteemed Partners</h2>
+                <p class="section-subtitle">
+                    Collaborating with leading organizations to enhance our educational mission and community impact.
+                </p>
+            </div>
+            <div class="partners-grid scroll-animate">
+                <div class="partner-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/ml/thumb/2/25/Darul_Huda_Islamic_University.png/220px-Darul_Huda_Islamic_University.png" alt="Darul Huda Islamic University Logo" onerror="this.onerror=null;this.src='https://placehold.co/150x70/cccccc/333333?text=DHIU';">
+                </div>
+                <div class="partner-logo-container">
+                    <img src="https://placehold.co/150x70/333333/FFFFFF?text=PBG+International" alt="PBG International Logo" onerror="this.onerror=null;this.src='https://placehold.co/150x70/cccccc/333333?text=PBG+Intl';">
+                </div>
+                <div class="partner-logo-container">
+                    <img src="https://placehold.co/150x70/A1887F/FFFFFF?text=Islamic+Charity+Org" alt="Islamic Charity Organization Logo" onerror="this.onerror=null;this.src='https://placehold.co/150x70/cccccc/333333?text=Charity+Org';">
+                </div>
+                <div class="partner-logo-container">
+                    <img src="https://placehold.co/150x70/003366/FFFFFF?text=EduTrust+Foundation" alt="EduTrust Foundation Logo" onerror="this.onerror=null;this.src='https://placehold.co/150x70/cccccc/333333?text=EduTrust';">
+                </div>
+                 </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding bg-transparent">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">
+                    We are here to assist you. For admissions, inquiries, or visits, please don't hesitate to contact us.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="custom-card p-8 scroll-animate">
+                    <h3 class="text-2xl font-semibold mb-6" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Send Us a Message</h3>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium" style="color:var(--text-dark); opacity:0.9;">Full Name</label>
+                            <input type="text" name="name" id="name" required class="form-input mt-1 block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium" style="color:var(--text-dark); opacity:0.9;">Email Address</label>
+                            <input type="email" name="email" id="email" required class="form-input mt-1 block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium" style="color:var(--text-dark); opacity:0.9;">Subject</label>
+                            <input type="text" name="subject" id="subject" required class="form-input mt-1 block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium" style="color:var(--text-dark); opacity:0.9;">Message</label>
+                            <textarea name="message" id="message" rows="4" required class="form-textarea mt-1 block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-accent-color-gold focus:border-accent-color-gold sm:text-sm"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full btn btn-primary py-3">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="space-y-8 scroll-animate" style="transition-delay: 0.2s;">
+                    <div class="custom-card p-8">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Contact Information</h3>
+                        <p class="mb-2" style="color: var(--text-dark); opacity:0.8;"><i class="fas fa-map-marker-alt mr-3" style="color: var(--accent-color-gold);"></i>Islahul Uloom Arabic College, Tanur, Kerala, India</p>
+                        <p class="mb-2" style="color: var(--text-dark); opacity:0.8;"><i class="fas fa-phone-alt mr-3" style="color: var(--accent-color-gold);"></i>(0494) 2420-256</p>
+                        <p class="mb-4" style="color: var(--text-dark); opacity:0.8;"><i class="fas fa-envelope mr-3" style="color: var(--accent-color-gold);"></i>info@islahululoom.org</p>
+                        <h4 class="text-xl font-semibold mb-3" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Office Hours</h4>
+                        <p style="color: var(--text-dark); opacity:0.8;">Monday - Saturday: 9:00 AM - 5:00 PM</p>
+                        <p style="color: var(--text-dark); opacity:0.8;">(Friday: 9:00 AM - 12:30 PM)</p>
+                    </div>
+                    <div id="contact-map-container" class="custom-card p-6 rounded-xl scroll-animate">
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Find Us Here</h3>
+                        <div id="small-location-map">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.478073496079!2d75.91598101479209!3d10.999795892160566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7b0c73f313feb%3A0x8090c94ff3048f8b!2sIslahul%20Uloom%20Arabic%20College!5e0!3m2!1sen!2sin!4v1678886543210!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="100%" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="custom-card p-8">
+                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color-brown); font-family: var(--font-headings);">Follow Our Journey</h3>
+                         <div class="flex space-x-6">
+                            <a href="https://www.instagram.com/islahul_uloom_tanur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-3xl" style="color:var(--text-dark); opacity:0.7;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-3xl" style="color:var(--text-dark); opacity:0.7;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-3xl" style="color:var(--text-dark); opacity:0.7;"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="text-3xl" style="color:var(--text-dark); opacity:0.7;"><i class="fab fa-twitter"></i></a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background-color: var(--bg-dark);" class="text-gray-400 py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center" style="font-family: var(--font-logo);"><i class="fas fa-mosque mr-2" style="color: var(--accent-color-gold);"></i>Islahul Uloom</h3>
+                    <p class="text-sm">A historic institution for Islamic higher education and research. Affiliated to Darul Huda Islamic University, Chemmad.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-accent-color-gold transition-colors">About Us</a></li>
+                        <li><a href="#programs" class="hover:text-accent-color-gold transition-colors">Programs</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Admissions</a></li>
+                        <li><a href="#facilities" class="hover:text-accent-color-gold transition-colors">Facilities</a></li>
+                        <li><a href="#donations" class="hover:text-accent-color-gold transition-colors">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Khutub Khana (Library)</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Student Portal</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Faculty Directory</a></li>
+                        <li><a href="#" class="hover:text-accent-color-gold transition-colors">Alumni Network</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Stay Connected</h3>
+                    <p class="text-sm mb-3">Subscribe for updates on events, research, and university news.</p>
+                    <form action="#" class="flex">
+                        <input type="email" placeholder="Your Email" class="w-full px-3 py-2.5 rounded-l-md text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-color-gold border-transparent">
+                        <button type="submit" class="text-white px-4 py-2.5 rounded-r-md text-sm font-semibold transition-colors" style="background-color: var(--accent-color-gold); color: var(--primary-color-brown);">Subscribe</button>
+                    </form>
+                     <div class="mt-4 flex space-x-4">
+                        <a href="https://www.instagram.com/islahul_uloom_tanur?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-pink-500 text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-xl"><i class="fab fa-twitter"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-10 text-center text-sm">
+                <p>© <span id="current-year"></span> Islahul Uloom Arabic College. All Rights Reserved.
+                <br class="md:hidden">
+                <a href="#" class="hover:text-accent-color-gold transition-colors ml-0 md:ml-4">Privacy Policy</a> | <a href="#" class="hover:text-accent-color-gold transition-colors ml-2">Terms of Use</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="chatbot-toggle">
+        <i class="fas fa-hands-helping"></i> 
+    </div>
+    <div id="chatbot-window" class="">
+        <div class="chatbot-header">
+            <h3>Islahul Uloom Assistant</h3>
+            <button id="chatbot-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-messages-container">
+            <div class="chat-message bot-message">Assalamu Alaikum! Welcome to Islahul Uloom. How can I assist you today? You can ask a question below or click to see common questions.</div>
+        </div>
+        <button id="chatbot-prompts-toggle">Show Common Questions <i class="fas fa-chevron-down ml-1"></i></button>
+        <div id="chatbot-prompts-container">
+            <button class="prompt-button" data-prompt="dua_majlis_time">When is the Special Dua Majlis conducted?</button>
+            <button class="prompt-button" data-prompt="dua_majlis_women_area">Is there a separate area for women at the Dua Majlis?</button>
+            <button class="prompt-button" data-prompt="dua_majlis_parking">Is parking available for the Dua Majlis?</button>
+            <button class="prompt-button" data-prompt="khutub_khana_visit">Can I visit the Khutub Khana (Library)?</button>
+        </div>
+        <div id="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Type your question...">
+            <button id="chatbot-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- Loading Overlay ---
+        const loadingOverlay = document.getElementById('loading-overlay');
+        if (loadingOverlay) {
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 2000); // Hide after 2 seconds
+        }
+
+        // --- DOM Element References ---
+        const body = document.body;
+        const mainHeader = document.getElementById('main-header');
+        const logo = mainHeader.querySelector('#main-header-logo'); 
+        const headerNavLinks = mainHeader.querySelectorAll('.header-nav-link');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuIcon = mobileMenuButton?.querySelector('i'); 
+        const mobileMenu = document.getElementById('mobile-menu');
+        const settingsToggleButton = document.getElementById('settings-toggle-button');
+        const settingsIcon = settingsToggleButton?.querySelector('i'); 
+        const settingsPanel = document.getElementById('settings-panel');
+        const closeSettingsPanelButton = document.getElementById('close-settings-panel');
+        const lightModeBtn = document.getElementById('light-mode-btn');
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+
+        // --- Theme Management ---
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                if(lightModeBtn) lightModeBtn.classList.remove('active');
+                if(darkModeBtn) darkModeBtn.classList.add('active');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                if(darkModeBtn) darkModeBtn.classList.remove('active');
+                if(lightModeBtn) lightModeBtn.classList.add('active');
+                localStorage.setItem('theme', 'light');
+            }
+            updateHeaderElementColors(); 
+        }
+        
+        function updateHeaderElementColors() {
+            if (!mainHeader || !body) return;
+            const isSticky = mainHeader.classList.contains('header-sticky');
+            const isDarkMode = body.classList.contains('dark-mode');
+            let currentHeaderTextColor;
+
+            if (isSticky) { // This condition might always be true if header is always sticky
+                currentHeaderTextColor = getComputedStyle(document.documentElement).getPropertyValue('--header-sticky-text-color').trim();
+            } else {
+                currentHeaderTextColor = getComputedStyle(document.documentElement).getPropertyValue('--header-text-color').trim();
+            }
+            
+            if (logo) {
+                 if (isSticky) {
+                    logo.style.color = currentHeaderTextColor;
+                 } else {
+                    logo.style.color = isDarkMode ? 'var(--accent-color-gold)' : 'var(--primary-color-brown)';
+                 }
+            }
+
+            if (headerNavLinks) headerNavLinks.forEach(link => link.style.color = currentHeaderTextColor);
+            if (mobileMenuIcon) mobileMenuIcon.style.color = currentHeaderTextColor;
+            if (settingsIcon) settingsIcon.style.color = currentHeaderTextColor;
+        }
+
+        if(lightModeBtn) lightModeBtn.addEventListener('click', () => applyTheme('light'));
+        if(darkModeBtn) darkModeBtn.addEventListener('click', () => applyTheme('dark'));
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // --- Custom Cursor ---
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) { 
+            document.addEventListener('mousemove', e => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('a, button, input, textarea, .custom-card, .prompt-button, #chatbot-toggle, .settings-button, .theme-toggle-button, .timeline-item, .partner-logo-container, .virtual-tour-video-container iframe').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+            });
+            document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
+            document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
+        }
+
+        // --- Hero Image Slider ---
+        const sliderContainer = document.getElementById('hero-slider-container');
+        const heroImages = [ 
+            'https://placehold.co/1920x1080/5D4037/FAF3E0?text=Islahul+Uloom+Campus+View+1',
+            'https://placehold.co/1920x1080/001f3f/FAF3E0?text=Serene+Courtyard+2',
+            'https://placehold.co/1920x1080/B08D57/212529?text=Library+Interior+3',
+            'https://placehold.co/1920x1080/6a5acd/FFFFFF?text=Students+in+Class+4',
+            'https://placehold.co/1920x1080/2E8B57/FFFFFF?text=Mosque+Exterior+5'
+        ];
+        let currentHeroSlide = 0;
+
+        function createHeroSlides() {
+            if (!sliderContainer) return;
+            heroImages.forEach((src, index) => {
+                const slide = document.createElement('div');
+                slide.classList.add('hero-slide');
+                slide.style.backgroundImage = `url('${src}')`;
+                if (index === 0) slide.classList.add('active');
+                sliderContainer.appendChild(slide);
+            });
+        }
+
+        function nextHeroSlide() {
+            if (!sliderContainer) return;
+            const slides = sliderContainer.querySelectorAll('.hero-slide');
+            if (slides.length === 0) return;
+            slides[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = (currentHeroSlide + 1) % slides.length;
+            slides[currentHeroSlide].classList.add('active');
+        }
+
+        if (heroImages.length > 0 && sliderContainer) {
+            createHeroSlides();
+            setInterval(nextHeroSlide, 5000); 
+        }
+
+        // --- Scroll Animations ---
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        const elementInView = (el, percentageScroll = 100) => {
+            if (!el) return false;
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= (window.innerHeight || document.documentElement.clientHeight) * (percentageScroll / 100);
+        };
+        const displayScrollElement = (element) => element.classList.add('visible');
+        const handleScrollAnimation = () => scrollElements.forEach(el => { if (elementInView(el, 85)) displayScrollElement(el); });
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation(); 
+
+        // --- Sticky Header (always sticky, but updates color on scroll) ---
+        window.addEventListener('scroll', function() {
+            if (!mainHeader) return;
+            // The class 'header-sticky' is now always on mainHeader by default
+            // This function primarily updates colors if needed based on scroll,
+            // though with the current CSS, colors are mostly handled by the :root variables and .header-sticky class.
+            updateHeaderElementColors();
+        });
+        updateHeaderElementColors(); // Initial call
+
+        // --- Mobile Menu Toggle ---
+        if (mobileMenuButton && mobileMenu && mobileMenuIcon) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isMenuOpen = mobileMenu.classList.toggle('show');
+                mobileMenuButton.setAttribute('aria-expanded', isMenuOpen);
+                if (isMenuOpen) {
+                    mobileMenuIcon.classList.remove('bi-list');
+                    mobileMenuIcon.classList.add('bi-x-lg');
+                } else {
+                    mobileMenuIcon.classList.remove('bi-x-lg');
+                    mobileMenuIcon.classList.add('bi-list');
+                }
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('show');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenuIcon.classList.remove('bi-x-lg');
+                    mobileMenuIcon.classList.add('bi-list');
+                });
+            });
+        }
+        
+        // --- Settings Panel Toggle ---
+        if (settingsToggleButton && settingsPanel && closeSettingsPanelButton) {
+            settingsToggleButton.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                settingsPanel.classList.toggle('open');
+            });
+            closeSettingsPanelButton.addEventListener('click', () => {
+                settingsPanel.classList.remove('open');
+            });
+            document.addEventListener('click', function(event) {
+                if (settingsPanel.classList.contains('open') && 
+                    !settingsPanel.contains(event.target) && 
+                    !settingsToggleButton.contains(event.target)) {
+                    settingsPanel.classList.remove('open');
+                }
+            });
+        }
+        
+        // --- Smooth Scrolling for Anchor Links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    let headerOffset = 0;
+                    if (mainHeader && getComputedStyle(mainHeader).position === 'sticky') { 
+                        headerOffset = mainHeader.offsetHeight;
+                    }
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+            });
+        });
+
+        // --- Set Current Year in Footer ---
+        const currentYearEl = document.getElementById('current-year');
+        if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
+        // Hero text animations
+        const heroH1 = document.querySelector('#hero h1');
+        const heroP = document.querySelector('#hero p');
+        const heroButtonsContainer = document.querySelector('#hero .btn-primary')?.parentElement; 
+        if(heroH1) heroH1.classList.add('animate-fade-in-down-js');
+        if(heroP) { heroP.classList.add('animate-fade-in-up-js'); heroP.style.animationDelay = '0.4s'; }
+        if(heroButtonsContainer) { heroButtonsContainer.classList.add('animate-fade-in-up-js'); heroButtonsContainer.style.animationDelay = '0.8s'; }
+
+        // --- AI Chatbot ---
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const messagesContainer = document.getElementById('chatbot-messages-container');
+        const chatbotPromptsToggle = document.getElementById('chatbot-prompts-toggle');
+        const chatbotPromptsContainer = document.getElementById('chatbot-prompts-container');
+        const promptButtons = chatbotPromptsContainer?.querySelectorAll('.prompt-button'); 
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+
+        if (chatbotToggle && chatbotWindow && chatbotClose) {
+            chatbotToggle.addEventListener('click', () => {
+                const isOpen = chatbotWindow.classList.toggle('open');
+                chatbotToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-hands-helping"></i>';
+            });
+            chatbotClose.addEventListener('click', () => {
+                chatbotWindow.classList.remove('open');
+                chatbotToggle.innerHTML = '<i class="fas fa-hands-helping"></i>';
+            });
+        }
+        
+        if (chatbotPromptsToggle && chatbotPromptsContainer) {
+            chatbotPromptsToggle.addEventListener('click', () => {
+                const isVisible = chatbotPromptsContainer.classList.toggle('visible');
+                const icon = chatbotPromptsToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-chevron-down', !isVisible);
+                    icon.classList.toggle('fa-chevron-up', isVisible);
+                }
+                // Update text content of the button, preserving the icon
+                const textNode = Array.from(chatbotPromptsToggle.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+                if (textNode) {
+                    textNode.textContent = isVisible ? "Hide Common Questions " : "Show Common Questions ";
+                }
+            });
+        }
+
+        function addMessageToChat(text, sender, type = 'normal') { 
+            if (!messagesContainer) return null;
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+            
+            if (type === 'typing') {
+                messageDiv.classList.add('typing-indicator');
+                messageDiv.innerHTML = '<span></span><span></span><span></span>';
+            } else if (type === 'connecting') {
+                 messageDiv.classList.add('connecting-indicator');
+                 messageDiv.innerHTML = text + ' <span>.</span><span>.</span><span>.</span>';
+            }
+            else {
+                messageDiv.innerHTML = text.replace(/\n/g, '<br>'); 
+            }
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight; 
+            return messageDiv; 
+        }
+        
+        function removeMessageFromChat(messageElement) {
+            if (messageElement && messagesContainer && messagesContainer.contains(messageElement)) {
+                messagesContainer.removeChild(messageElement);
+            }
+        }
+
+        const botResponses = {
+            "dua_majlis_time": "Islahul Uloom conducts a Special Dua Majlis every Friday after Jummah prayers in the main prayer hall. All students, staff, and community members are welcome to attend, Insha'Allah.",
+            "dua_majlis_women_area": "Yes, a separate and comfortable area is arranged for women during the Dua Majlis. This is typically located in the Conference Hall, which is near the parking area for convenience.",
+            "dua_majlis_parking": "Yes, ample parking is available on campus. The area can accommodate minibuses and has space for over 25 cars. We strive to ensure convenient access for all attendees.",
+            "khutub_khana_visit": "Certainly! The Khutub Khana (University Library) is open to students, researchers, and registered visitors. Our general timings are Sunday to Thursday, from 9:00 AM to 6:00 PM. Please bring your university ID or arrange for a visitor pass at the reception. It houses an extensive collection of Islamic texts, manuscripts, and modern research materials.",
+            "admission": "For admission details, please visit our 'Admissions' page on the website or contact the administration office directly. We offer various programs in Islamic studies.",
+            "courses": "We offer degree programs in Sharia & Islamic Law, Quranic Studies & Tafsir, and Islamic History & Civilization. You can find more details under the 'Programs' section.",
+            "contact": "You can contact us via phone at (0494) 2420-256 or email at info@islahululoom.org. Our office hours are Monday-Saturday, 9 AM - 5 PM.",
+            "default": "I apologize, I'm still learning. For detailed information, please explore our website or contact our administration. You can select one of the prompts above for common questions."
+        };
+
+        function getBotResponse(userMessageText) {
+            userMessageText = userMessageText.toLowerCase().trim();
+            if (userMessageText.includes("dua majlis time") || userMessageText.includes("dua time")) return botResponses.dua_majlis_time;
+            if (userMessageText.includes("women area") || userMessageText.includes("ladies section")) return botResponses.dua_majlis_women_area;
+            if (userMessageText.includes("parking")) return botResponses.dua_majlis_parking;
+            if (userMessageText.includes("library") || userMessageText.includes("khutub khana")) return botResponses.khutub_khana_visit;
+            if (userMessageText.includes("admission") || userMessageText.includes("apply") || userMessageText.includes("join")) return botResponses.admission;
+            if (userMessageText.includes("course") || userMessageText.includes("program")) return botResponses.courses;
+            if (userMessageText.includes("contact") || userMessageText.includes("phone") || userMessageText.includes("email")) return botResponses.contact;
+            if (userMessageText.includes("hello") || userMessageText.includes("hi") || userMessageText.includes("assalamu alaikum")) return "Wa Alaikum Assalam! How can I help you today?";
+            return botResponses.default;
+        }
+
+        function handleSendMessage() {
+            if (!chatbotInput) return;
+            const userMessageText = chatbotInput.value.trim();
+            if (userMessageText === "") return;
+
+            addMessageToChat(userMessageText, 'user');
+            chatbotInput.value = ""; 
+
+            const connectingMsg = addMessageToChat("Connecting", 'bot', 'connecting');
+
+            setTimeout(() => {
+                removeMessageFromChat(connectingMsg);
+                const typingIndicator = addMessageToChat("", 'bot', 'typing'); 
+
+                setTimeout(() => {
+                    removeMessageFromChat(typingIndicator); 
+                    const botResponseText = getBotResponse(userMessageText);
+                    addMessageToChat(botResponseText, 'bot');
+                }, 1000 + Math.random() * 500); 
+            }, 800 + Math.random() * 400); 
+        }
+
+        if (chatbotSendBtn && chatbotInput) {
+            chatbotSendBtn.addEventListener('click', handleSendMessage);
+            chatbotInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') handleSendMessage(); });
+        }
+
+        if (promptButtons) {
+            promptButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const promptKey = button.dataset.prompt;
+                    const userMessage = button.textContent;
+                    
+                    addMessageToChat(userMessage, 'user');
+                    const typingIndicator = addMessageToChat("", 'bot', 'typing');
+
+                    setTimeout(() => {
+                        removeMessageFromChat(typingIndicator);
+                        const botResponse = botResponses[promptKey] || botResponses["default"];
+                        addMessageToChat(botResponse, 'bot');
+                    }, 1000 + Math.random() * 500); 
+                });
+            });
+        }
+
+        // --- Language Selection ---
+        const htmlElement = document.documentElement;
+        const langButtons = document.querySelectorAll('#settings-panel .settings-button[data-lang]');
+        if (langButtons) {
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.dataset.lang;
+                    htmlElement.lang = lang; 
+                    if (lang === 'ar' || lang === 'ur') {
+                        body.dir = 'rtl';
+                    } else {
+                        body.dir = 'ltr';
+                    }
+                    if(settingsPanel) settingsPanel.classList.remove('open'); 
+                });
+            });
+        }
+
+        // --- Timeline Data & Population ---
+        const timelineData = [
+            { year: "1924", title: "College Started as Islahul Uloom Madrasa", description: "The foundation was laid with a vision to impart Islamic knowledge.", image: "https://placehold.co/300x180/5D4037/FAF3E0?text=Founding+1924" },
+            { year: "1994", title: "Affiliated to Darul Huda Islamic University", description: "A significant step towards broader academic recognition and curriculum enhancement.", image: "https://placehold.co/300x180/B08D57/FFFFFF?text=Affiliation+1994" },
+            { year: "2010", title: "New Campus Building Opened", description: "Expansion to accommodate growing student numbers and enhanced facilities.", image: "https://placehold.co/300x180/001f3f/FAF3E0?text=New+Campus+2010" },
+            { year: "2015", title: "Library with 8,000 Books Inaugurated", description: "The Khutub Khana expanded, offering vast resources for students and scholars.", image: "https://placehold.co/300x180/A1887F/FFFFFF?text=Library+2015" },
+            { year: "2021", title: "Smart Classrooms Inaugurated", description: "Integrating modern technology into teaching methodologies for an interactive learning experience.", image: "https://placehold.co/300x180/6a5acd/FFFFFF?text=Smart+Classes+2021" },
+            { year: "2023", title: "New Grand Mosque Opened", description: "A spiritual center for the campus and local community, reflecting Islamic architecture.", image: "https://placehold.co/300x180/2E8B57/FFFFFF?text=Grand+Mosque+2023" },
+            { year: "2024", title: "Centennium (Century) Celebrated", description: "Marking 100 years of dedication to Islamic education and community service.", image: "https://placehold.co/300x180/D4AF37/000000?text=Century+2024" },
+            { year: "2025", title: "Department Hall Inaugurated", description: "New state-of-the-art hall for specialized departmental activities and seminars.", image: "https://placehold.co/300x180/4682B4/FFFFFF?text=Dept+Hall+2025" }
+        ];
+
+        const timelineContainer = document.getElementById('timelineScroller');
+        if (timelineContainer) {
+            timelineData.forEach(item => {
+                const timelineItemDiv = document.createElement('div');
+                timelineItemDiv.classList.add('timeline-item');
+                timelineItemDiv.innerHTML = `
+                    <div class="timeline-year">${item.year}</div>
+                    <div class="timeline-image-wrapper">
+                        <img src="${item.image}" alt="${item.title}" onerror="this.onerror=null;this.src='https://placehold.co/300x180/cccccc/333333?text=Event+Image';">
+                    </div>
+                    <h4 class="timeline-title">${item.title}</h4>
+                    <p class="timeline-description">${item.description}</p>
+                `;
+                timelineContainer.appendChild(timelineItemDiv);
+            });
+
+            let scrollAmount = 0;
+            const scrollStep = 1; 
+            const scrollInterval = 50; 
+
+            function autoScrollTimeline() {
+                if (timelineContainer.scrollLeft < (timelineContainer.scrollWidth - timelineContainer.clientWidth)) {
+                    timelineContainer.scrollLeft += scrollStep;
+                } else {
+                     setTimeout(() => { timelineContainer.scrollTo({left: 0, behavior: 'smooth'}); }, 2000);
+                }
+            }
+            let autoScrollIntervalId = setInterval(autoScrollTimeline, scrollInterval);
+
+            timelineContainer.addEventListener('mouseenter', () => clearInterval(autoScrollIntervalId));
+            timelineContainer.addEventListener('mouseleave', () => autoScrollIntervalId = setInterval(autoScrollTimeline, scrollInterval));
+        }
+
+    });
+
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+        @keyframes fadeInDownJS {0% { opacity: 0; transform: translateY(-35px); } 100% { opacity: 1; transform: translateY(0); }}
+        @keyframes fadeInUpJS {0% { opacity: 0; transform: translateY(35px); } 100% { opacity: 1; transform: translateY(0); }}
+        .animate-fade-in-down-js { animation: fadeInDownJS 1s ease-out forwards; opacity:0; }
+        .animate-fade-in-up-js { animation: fadeInUpJS 1s ease-out forwards; opacity:0; }
+    `;
+    document.head.appendChild(styleSheet);
+
+    </script>
+</body>
+</html>
